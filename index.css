@@ -1,0 +1,300 @@
+/* Reset & 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+}
+
+/* 헤더 */
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+}
+header nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+}
+.login-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.hero {
+  background: url('img.png') no-repeat right center / cover;
+  background-color: #f1f3fc; /* 배경색도 같이 설정 */
+  padding: 4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 400px;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.buttons button {
+  margin-right: 1rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: #1a73e8;
+  color: white;
+}
+
+.buttons button:nth-child(2),
+.buttons button:nth-child(3) {
+  background-color: white;
+  color: #1a73e8;
+  border: 1px solid #1a73e8;
+}
+
+
+
+/* 배너 */
+/* .hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f1f3fc;
+  padding: 3rem 2rem;
+}
+.hero-text h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.hero-text p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.hero .buttons button {
+  margin-right: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+} */
+.primary {
+  background-color: #007bff;
+  color: white;
+}
+.secondary {
+  background-color: white;
+  color: #007bff;
+  border: 1px solid #007bff;
+}
+/* .hero-img img {
+  width:400px;
+  max-width: 100%;
+} */
+
+/* 교육 허브 */
+.education-hub {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.education-hub h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.education-hub p {
+  margin-bottom: 2rem;
+}
+.cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  background-color: #fafafa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.card p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+.card a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+.quiz-section {
+  background-color: #f9fbfd;
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.quiz-container {
+  display: flex;
+  background-color: #f1f3fc;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 1200px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 2rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.quiz-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.quiz-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.quiz-content h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.quiz-content p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #444;
+}
+
+.quiz-steps {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-steps .step {
+  background-color: #e0e3eb;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-weight: bold;
+  color: #555;
+  text-align: center;
+  line-height: 1.2;
+  font-size: 0.9rem;
+}
+
+.quiz-steps .step.active {
+  background-color: #2d6cdf;
+  color: white;
+}
+
+.quiz-btn {
+  background-color: #2d6cdf;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.quiz-note {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* --------------------------------- */
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step {
+  text-align: center;
+}
+
+.circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #e2e6ed;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.step.active .circle {
+  background: #2d6cdf;
+  color: #fff;
+}
+
+.label {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.line {
+  width: 80px;
+  height: 4px;
+  background: #e2e6ed;
+  margin: 0 8px;
+  border-radius: 2px;
+}
+
+.line.active {
+  background: #2d6cdf;
+}
