@@ -1,29 +1,44 @@
+/* 헤더 */
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+
+}
+header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+}
+header nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+}
+.login-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-bu {
+  text-decoration-line: none;
+  color: #1B72E8;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f7f8fa;
   margin: 0;
   padding: 0;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  background-color: white;
-  border-bottom: 1px solid #ddd;
-}
-
-.logo {
-  font-size: 24px;
-  color: #5c5be5;
-  font-weight: bold;
-}
-
-nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: #333;
 }
 
 main {
