@@ -1,0 +1,102 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f8fa;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 24px;
+  color: #5c5be5;
+  font-weight: bold;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.questionnaire {
+  text-align: center;
+  max-width: 600px;
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.question-box {
+  margin-top: 30px;
+}
+
+.progress-bar {
+  background-color: #e0e0e0;
+  height: 6px;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.progress {
+  height: 6px;
+  background-color: #5c5be5;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.question-number {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.question-text {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  text-align: left;
+  background: #f2f2f2;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #5c5be5;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+

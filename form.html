@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>디지털 시민 자가진단</title>
+  <!-- 외부 CSS 파일 연결 -->
+  <link rel="stylesheet" href="form.css">
+</head>
+<body>
+  <!-- 상단 로고와 네비게이션 메뉴 -->
+  <header>
+  <!-- 디지털 시민의식(Digital Citizen) 웹페이지용 심플 SVG 로고 (파란색 방패+사람+네트워크 느낌) -->
+  <div class="logo" style="display:flex;align-items:center;gap:8px;">
+    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+      <!-- 방패 모양: 책임감과 보호 의미 -->
+      <path d="M19 3 L33 8 V18 C33 27 19 35 19 35 C19 35 5 27 5 18 V8 Z" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
+      <!-- 사람 머리: 시민을 상징 -->
+      <circle cx="19" cy="14" r="3" fill="#fff"/>
+      <!-- 사람 몸통 -->
+      <rect x="16" y="17" width="6" height="7" rx="3" fill="#fff"/>
+      <!-- 네트워크 연결: 디지털 세상 상징 -->
+      <circle cx="11" cy="23" r="2" fill="#60a5fa"/>
+      <circle cx="27" cy="23" r="2" fill="#60a5fa"/>
+      <line x1="14" y1="23" x2="24" y2="23" stroke="#60a5fa" stroke-width="1.5"/>
+    </svg>
+    <!-- 로고 이름: D-CiZen (Digital Citizen의 의미) -->
+    <span style="font-weight:bold; font-size:1.2rem; color:#2563eb;">D-CiZen</span>
+  </div>
+  <nav>
+    <a href="dcizen.dgsw.site/index.html">Home</a>
+    <a href="#">Resources</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+  <main>
+    <!-- 자가진단 설문 전체 영역 -->
+    <section class="questionnaire">
+      <!-- 설문 제목 -->
+      <h1>나는 책임감 있는 디지털 시민인가요?</h1>
+      <!-- 설문 안내 문구 -->
+      <p>온라인 행동을 되돌아보고 더 나은 디지털 시민이 되기 위한 맞춤형 피드백을 받아보세요.</p>
+
+      <!-- 질문과 답변, 진행률을 담는 박스 -->
+      <div class="question-box">
+        <!-- 진행률 바(현재 몇 %인지 시각적으로 표시) -->
+        <div class="progress-bar">
+          <div class="progress" style="width: 20%;"></div>
+        </div>
+        <!-- 현재 질문 번호 -->
+        <p class="question-number">Question 1/5</p>
+        <!-- 현재 질문 내용 -->
+        <p class="question-text">소셜 미디어 계정의 개인정보 설정을 얼마나 자주 확인하시나요?</p>
+
+        <!-- 답변 선택 폼(라디오 버튼) -->
+        <form id="questionForm">
+          <label><input type="radio" name="q1" value="1"> 전혀 확인하지 않고 기본 설정 사용</label>
+          <label><input type="radio" name="q1" value="2"> 개인정보 문제가 있을 때만 가끔 확인</label>
+          <label><input type="radio" name="q1" value="3"> 일 년에 몇 번 정도 확인</label>
+          <label><input type="radio" name="q1" value="4"> 한 달에 한 번 이상 정기적으로 확인</label>
+        </form>
+
+        <!-- 이전/다음 질문 이동 버튼 -->
+        <div class="buttons">
+          <button disabled>Previous</button>
+          <button id="nextBtn">Next Question</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 설문 질문과 선택지 배열
+    const questions = [
+      {
+        text: '소셜 미디어 계정의 개인정보 설정을 얼마나 자주 확인하시나요?',
+        options: [
+          '전혀 확인하지 않고 기본 설정 사용',
+          '개인정보 문제가 있을 때만 가끔 확인',
+          '일 년에 몇 번 정도 확인',
+          '한 달에 한 번 이상 정기적으로 확인'
+        ]
+      },
+      {
+        text: '온라인에서 타인을 존중하는 태도를 어떻게 실천하고 있나요?',
+        options: [
+          '타인을 비난하거나 조롱하는 경우가 있음',
+          '문제가 있을 때만 조심하려고 함',
+          '대체로 예의 바르게 행동하려고 노력함',
+          '항상 타인의 입장을 존중하고 배려함'
+        ]
+      },
+      {
+        text: '온라인에서 가짜 뉴스나 잘못된 정보를 접했을 때 어떻게 하나요?',
+        options: [
+          '그냥 넘긴다',
+          '사실인지 헷갈리면 검색해본다',
+          '신뢰할 수 있는 출처를 통해 검토한다',
+          '사람들에게 정확한 정보를 공유하려 한다'
+        ]
+      },
+      {
+        text: '공공장소에서 인터넷을 사용할 때 보안에 얼마나 신경 쓰나요?',
+        options: [
+          '보안에 대해 신경 쓰지 않는다',
+          '가끔 VPN을 사용한다',
+          '항상 보안 연결인지 확인한다',
+          '2단계 인증과 보안앱을 적극 활용한다'
+        ]
+      },
+      {
+        text: '디지털 발자국(온라인 기록) 관리에 대해 어떻게 생각하나요?',
+        options: [
+          '크게 신경 쓰지 않는다',
+          '필요할 때만 삭제한다',
+          '정기적으로 기록을 점검하고 삭제한다',
+          '가능한 모든 기록을 최소화하려 한다'
+        ]
+      }
+    ];
+
+    let currentQuestionIndex = 0; // 현재 질문 번호(0부터 시작)
+
+    // 주요 DOM 요소 변수 선언
+    const form = document.getElementById('questionForm'); // 답변 폼
+    const nextBtn = document.getElementById('nextBtn'); // 다음 버튼
+    const questionNumberElem = document.querySelector('.question-number'); // 질문 번호 표시
+    const questionTextElem = document.querySelector('.question-text'); // 질문 텍스트 표시
+    const progressElem = document.querySelector('.progress'); // 진행률 바
+    const prevBtn = document.querySelector('.buttons button:first-child'); // 이전 버튼
+
+    // 현재 질문을 화면에 표시하는 함수
+    function loadQuestion(index) {
+      const question = questions[index];
+      // 질문 번호와 텍스트 갱신
+      questionNumberElem.textContent = `Question ${index + 1}/5`;
+      questionTextElem.textContent = question.text;
+      // 답변 폼 초기화 및 라디오 버튼 생성
+      form.innerHTML = '';
+      question.options.forEach((optionText, i) => {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = `q${index + 1}`;
+        input.value = (i + 1).toString();
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(' ' + optionText));
+        form.appendChild(label);
+      });
+      // 진행률 바 업데이트
+      progressElem.style.width = `${((index + 1) / 5) * 100}%`;
+      // 답변 선택 전에는 다음 버튼 비활성화
+      nextBtn.disabled = true;
+
+      // 답변 선택 시 다음 버튼 활성화(한 번만 이벤트 등록)
+      form.addEventListener('change', () => {
+        nextBtn.disabled = false;
+      }, { once: true });
+
+      // 첫 번째 질문이면 이전 버튼 비활성화
+      prevBtn.disabled = index === 0;
+    }
+
+    // 다음 질문 버튼 클릭 시 동작
+    nextBtn.addEventListener('click', () => {
+      // 답변 선택 여부 확인
+      const selected = form.querySelector('input[type="radio"]:checked');
+      if (!selected) {
+        alert('질문에 답변을 선택해주세요.');
+        return;
+      }
+
+      // 다음 질문으로 이동 또는 설문 종료 안내
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        loadQuestion(currentQuestionIndex);
+      } else {
+        alert('모든 질문에 답변해주셔서 감사합니다.');
+        // 결과 처리 또는 제출 코드 추가 가능
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        loadQuestion(currentQuestionIndex);
+      }
+    });
+
+    // 페이지 로드 시 첫 질문 표시
+    loadQuestion(currentQuestionIndex);
+  </script>
+</body>
+</html>
