@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 메인 페이지 초기화
 function initializeMainPage() {
+  // window.open() 팝업 표시 (0.1초 후)
+  setTimeout(() => {
+    showWindowPopup();
+  }, 100);
+  
   updateLoginButton();
   initializeAnimations();
   initializeScrollEffects();
@@ -218,7 +223,365 @@ function initializeScrollEffects() {
   });
 }
 
+// window.open()을 사용한 새 창 팝업
+function showWindowPopup() {
+  // 팝업 차단 확인
+  let popup;
+  
+  try {
+    // 새 창 열기
+    popup = window.open('', 'D-CiZen_Info', 'width=500,height=600,left=100,top=100,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no,directories=no,status=no');
+    
+    if (!popup) {
+      // 팝업이 차단된 경우 알림
+      showNotification('팝업이 차단되었습니다. 브라우저 설정에서 팝업을 허용해주세요.', 'error');
+      return;
+    }
+
+    // 팝업 창에 HTML 내용 작성
+    popup.document.write(`
+      <!DOCTYPE html>
+      <html lang="ko">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>D-CiZen 사이트 정보</title>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet">
+        <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          
+          body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+          }
+          
+          .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          }
+          
+          .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 10px;
+          }
+          
+          .logo svg {
+            filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.3));
+          }
+          
+          .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+            text-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+          }
+          
+          .subtitle {
+            color: #6b7280;
+            font-size: 14px;
+            margin-top: 5px;
+          }
+          
+          .content {
+            flex: 1;
+            padding: 30px 25px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          }
+          
+          .welcome {
+            text-align: center;
+            margin-bottom: 25px;
+          }
+          
+          .welcome h2 {
+            color: #1f2937;
+            font-size: 22px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+          
+          .info-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            border-left: 4px solid #2563eb;
+          }
+          
+          .info-section h3 {
+            color: #374151;
+            font-size: 16px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+          
+          .info-grid {
+            display: grid;
+            gap: 12px;
+          }
+          
+          .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(156, 163, 175, 0.3);
+          }
+          
+          .info-item:last-child {
+            border-bottom: none;
+          }
+          
+          .info-label {
+            font-weight: 600;
+            color: #4b5563;
+            font-size: 14px;
+          }
+          
+          .info-value {
+            color: #2563eb;
+            font-weight: 500;
+            font-size: 14px;
+          }
+          
+          .features {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-left-color: #10b981;
+          }
+          
+          .feature-list {
+            list-style: none;
+            padding: 0;
+          }
+          
+          .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            color: #065f46;
+            font-size: 14px;
+          }
+          
+          .feature-list li::before {
+            content: "✓";
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+          }
+          
+          .footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(156, 163, 175, 0.3);
+          }
+          
+          .btn {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            margin: 0 5px;
+          }
+          
+          .btn:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+          }
+          
+          .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+          }
+          
+          .btn-secondary:hover {
+            background: #e5e7eb;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          }
+          
+          .animated {
+            animation: fadeInUp 0.6s ease-out;
+          }
+          
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          
+          .pulse {
+            animation: pulse 2s infinite;
+          }
+          
+          @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header animated">
+          <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 3 L33 8 V18 C33 27 19 35 19 35 C19 35 5 27 5 18 V8 Z" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
+              <circle cx="19" cy="14" r="3" fill="#fff"/>
+              <rect x="16" y="17" width="6" height="7" rx="3" fill="#fff"/>
+              <circle cx="11" cy="23" r="2" fill="#60a5fa"/>
+              <circle cx="27" cy="23" r="2" fill="#60a5fa"/>
+              <line x1="14" y1="23" x2="24" y2="23" stroke="#60a5fa" stroke-width="1.5"/>
+            </svg>
+            <span class="logo-text">D-CiZen</span>
+          </div>
+          <div class="subtitle">디지털 시민의식 교육 플랫폼</div>
+        </div>
+        
+        <div class="content animated">
+          <div class="welcome">
+            <h2>🎓 수행평가 프로젝트 안내</h2>
+            <p>디지털 시민의식 향상을 위한 교육 웹사이트입니다.</p>
+          </div>
+          
+          <div class="info-section">
+            <h3><i class="ri-information-line"></i> 프로젝트 정보</h3>
+            <div class="info-grid">
+              <div class="info-item">
+                <span class="info-label">학교</span>
+                <span class="info-value">대구소프트웨어 마이스터고등학교</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">과목</span>
+                <span class="info-value">웹 기초</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">유형</span>
+                <span class="info-value">수행평가</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">주제</span>
+                <span class="info-value">디지털 시민의식 교육</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">제작일</span>
+                <span class="info-value">2025년 6월</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="info-section features">
+            <h3><i class="ri-star-line"></i> 주요 기능</h3>
+            <ul class="feature-list">
+              <li>연령별 맞춤 디지털 시민의식 교육</li>
+              <li>자가진단 테스트 및 결과 분석</li>
+              <li>실제 사례 기반 학습 콘텐츠</li>
+              <li>커뮤니티 토론 및 경험 공유</li>
+              <li>신고 시스템 및 도움말 센터</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="footer animated">
+          <button class="btn" onclick="window.opener.focus(); window.close();">
+            <i class="ri-home-line"></i>
+            메인 사이트로 돌아가기
+          </button>
+          <button class="btn btn-secondary" onclick="window.close();">
+            <i class="ri-close-line"></i>
+            창 닫기
+          </button>
+        </div>
+        
+        <script>
+          // 창이 로드된 후 애니메이션 실행
+          window.onload = function() {
+            setTimeout(() => {
+              document.querySelectorAll('.animated').forEach((el, index) => {
+                el.style.animationDelay = (index * 0.2) + 's';
+              });
+            }, 100);
+          };
+          
+          // 키보드 단축키
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+              window.close();
+            }
+            if (e.ctrlKey && e.key === 'w') {
+              e.preventDefault();
+              window.close();
+            }
+          });
+        </script>
+      </body>
+      </html>
+    `);
+    
+    popup.document.close();
+    
+    // 팝업 창에 포커스
+    popup.focus();
+    
+    // 성공 알림
+    showNotification('새 창에서 상세 정보를 확인하세요!', 'info');
+    
+  } catch (error) {
+    console.error('팝업 창 생성 중 오류 발생:', error);
+    showNotification('팝업 창을 열 수 없습니다.', 'error');
+  }
+}
+
 // 전역 함수로 내보내기
 window.logout = logout;
 window.checkLoginStatus = checkLoginStatus;
 window.showNotification = showNotification;
+window.showWindowPopup = showWindowPopup;

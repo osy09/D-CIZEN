@@ -151,12 +151,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 로그인 상태 확인 및 네비게이션 업데이트
 function updateNavigation() {
-  const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+  const isLoggedIn = checkLoginStatus();
   const loginBtn = document.querySelector('.login-btn');
   
   if (isLoggedIn) {
-    const username = sessionStorage.getItem('username') || '사용자';
-    loginBtn.textContent = `${username}님`;
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    loginBtn.textContent = user.name || '테스트사용자';
     loginBtn.onclick = logout;
     loginBtn.style.background = 'var(--gradient-accent)';
   } else {
@@ -165,10 +165,33 @@ function updateNavigation() {
   }
 }
 
+// 로그인 상태 확인 (메인 페이지와 동일한 로직)
+function checkLoginStatus() {
+  const isLogin = localStorage.getItem('isLogin');
+  const loginTime = localStorage.getItem('loginTime');
+  
+  if (isLogin && loginTime) {
+    const loginDate = new Date(loginTime);
+    const now = new Date();
+    const timeDiff = now - loginDate;
+    
+    // 24시간 후 자동 로그아웃
+    if (timeDiff > 24 * 60 * 60 * 1000) {
+      logout();
+      return false;
+    }
+    return true;
+  }
+  return false;
+}
+
 // 로그아웃 함수
 function logout() {
   if (confirm('로그아웃 하시겠습니까?')) {
-    sessionStorage.clear();
+    localStorage.removeItem('isLogin');
+    localStorage.removeItem('user');
+    localStorage.removeItem('loginTime');
+    
     showNotification('로그아웃되었습니다.', 'success');
     setTimeout(() => {
       window.location.href = 'index.html';

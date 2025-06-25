@@ -224,23 +224,14 @@ function checkURLParameters() {
 
 // 학습 카드 이벤트 설정
 function setupLearningCards() {
-  const learningCards = document.querySelectorAll('.learning-card');
+  // 모든 학습 시작하기 버튼에 이벤트 추가
+  const courseButtons = document.querySelectorAll('.course-btn');
+  const ctaButtons = document.querySelectorAll('.cta-buttons .btn-primary');
   
-  learningCards.forEach(card => {
-    // 호버 효과
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-10px)';
-      this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-      this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
-    });
-    
-    // 클릭 이벤트
-    card.addEventListener('click', function() {
-      const cardTitle = this.querySelector('h4')?.textContent || '학습 콘텐츠';
+  // 강의 카드의 학습 시작하기 버튼들
+  courseButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const courseTitle = this.closest('.course-card').querySelector('h3')?.textContent || '학습 콘텐츠';
       
       // 클릭 애니메이션
       this.style.transform = 'scale(0.95)';
@@ -258,15 +249,58 @@ function setupLearningCards() {
       }
       
       // 학습 시작 확인
-      if (confirm(`"${cardTitle}" 학습을 시작하시겠습니까?`)) {
+      if (confirm(`"${courseTitle}" 학습을 시작하시겠습니까?`)) {
         showNotification('학습을 시작합니다!', 'success');
         
-        // 실제 구현시에는 해당 학습 페이지로 이동
+        // YouTube 링크로 이동
         setTimeout(() => {
-          // 예: window.location.href = `lesson.html?type=${cardTitle}`;
-          showNotification('학습 페이지 준비 중입니다.', 'info');
+          window.open('https://youtu.be/SdP-Fy4mqAE?feature=shared', '_blank');
         }, 1000);
       }
+    });
+  });
+  
+  // CTA 섹션의 학습 시작하기 버튼
+  ctaButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // 클릭 애니메이션
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        this.style.transform = 'scale(1)';
+      }, 150);
+      
+      // 로그인 확인
+      if (!checkLoginStatus()) {
+        showNotification('로그인이 필요한 서비스입니다.', 'error');
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1500);
+        return;
+      }
+      
+      // 학습 시작 확인
+      if (confirm('디지털 시민의식 학습을 시작하시겠습니까?')) {
+        showNotification('학습을 시작합니다!', 'success');
+        
+        // YouTube 링크로 이동
+        setTimeout(() => {
+          window.open('https://youtu.be/SdP-Fy4mqAE?feature=shared', '_blank');
+        }, 1000);
+      }
+    });
+  });
+  
+  // 학습 카드 호버 효과
+  const learningCards = document.querySelectorAll('.course-card');
+  learningCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-5px)';
+      this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.1)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.08)';
     });
   });
 }
