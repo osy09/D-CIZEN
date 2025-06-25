@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>도움말 & QNA - D-CiZen</title>
+  <link rel="stylesheet" href="help.css">
+</head>
+<body>
+  <!-- 상단 로고와 네비게이션 -->
+  <header>
+    <div class="container">
+      <div class="logo" style="display:flex;align-items:center;gap:8px;">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+          <path d="M19 3 L33 8 V18 C33 27 19 35 19 35 C19 35 5 27 5 18 V8 Z" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
+          <circle cx="19" cy="14" r="3" fill="#fff"/>
+          <rect x="16" y="17" width="6" height="7" rx="3" fill="#fff"/>
+          <circle cx="11" cy="23" r="2" fill="#60a5fa"/>
+          <circle cx="27" cy="23" r="2" fill="#60a5fa"/>
+          <line x1="14" y1="23" x2="24" y2="23" stroke="#60a5fa" stroke-width="1.5"/>
+        </svg>
+        <span style="font-weight:bold; font-size:1.2rem; color:#2563eb;"><a class="form-bu" href="index.html">D-CiZen</a></span>
+      </div>
+      <nav>
+        <a href="learn.html">학습</a>
+        <a href="form.html">테스트</a>
+        <a href="#">커뮤니티</a>
+        <a href="help.html">도움말</a>
+      </nav>
+      <div>
+        <button class="login-btn" id="loginBtn">로그인</button>
+        <button class="login-btn" id="logoutBtn" style="display:none;">로그아웃</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="help-container">
+      <h1>도움말 & QNA</h1>
+      <p>궁금한 점을 자유롭게 질문하고, 다른 사람의 QNA도 확인해보세요.</p>
+
+      <!-- 자주 묻는 질문(FAQ) -->
+      <section class="faq-section">
+        <h2>자주 묻는 질문</h2>
+        <ul class="faq-list">
+          <li>
+            <span class="faq-q">Q. 회원가입 없이 이용할 수 있나요?</span>
+            <span class="faq-a">네, 로그인 없이도 대부분의 콘텐츠를 볼 수 있습니다. 단, 일부 기능은 로그인 후 이용 가능합니다.</span>
+          </li>
+          <li>
+            <span class="faq-q">Q. QNA는 어떻게 등록하나요?</span>
+            <span class="faq-a">아래 '질문 등록하기' 버튼을 눌러 질문을 작성할 수 있습니다.</span>
+          </li>
+          <li>
+            <span class="faq-q">Q. 내 QNA는 어디에 저장되나요?</span>
+            <span class="faq-a">작성한 QNA는 이 브라우저에만 저장되며, 새로고침해도 유지됩니다. (다른 기기에서는 보이지 않습니다.)</span>
+          </li>
+          <li>
+            <span class="faq-q">Q. QNA를 삭제하거나 수정할 수 있나요?</span>
+            <span class="faq-a">현재는 삭제/수정 기능을 지원하지 않습니다. 추후 업데이트될 예정입니다.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 예시 QNA -->
+      <section class="qna-example-section">
+        <h2>예시 질문</h2>
+        <div class="qna-item">
+          <div class="qna-title">온라인에서 개인정보를 안전하게 지키려면 어떻게 해야 하나요?</div>
+          <div class="qna-meta">홍길동 · 2024.06.25</div>
+          <button class="qna-answer-toggle">답변 보기</button>
+          <div class="qna-answer" style="display:none;">
+            <div class="qna-content">
+              <ul>
+                <li>비밀번호를 주기적으로 변경하고, 다른 사이트마다 다르게 사용하세요.</li>
+                <li>의심스러운 링크나 첨부파일은 클릭하지 마세요.</li>
+                <li>개인정보(이름, 주소, 연락처 등)는 꼭 필요한 곳에만 입력하세요.</li>
+                <li>공공장소에서 로그인 후 반드시 로그아웃하세요.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="qna-item">
+          <div class="qna-title">사이버 괴롭힘을 당하면 어떻게 해야 하나요?</div>
+          <div class="qna-meta">김학생 · 2024.06.25</div>
+          <button class="qna-answer-toggle">답변 보기</button>
+          <div class="qna-answer" style="display:none;">
+            <div class="qna-content">
+              <ul>
+                <li>상대방과 직접 대화하지 말고, 증거(캡처 등)를 남기세요.</li>
+                <li>믿을 수 있는 어른이나 선생님, 보호자에게 바로 알리세요.</li>
+                <li>필요하다면 학교나 경찰, 관련 기관에 도움을 요청하세요.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- QNA 폼 토글 버튼 -->
+      <button class="qna-form-toggle-btn" id="qnaFormToggleBtn">질문 등록하기</button>
+
+      <!-- QNA 작성 폼 (초기에는 축소) -->
+      <form id="qnaForm" class="qna-form qna-form-collapsed">
+        <input type="text" id="qnaName" placeholder="이름 또는 닉네임" required>
+        <input type="text" id="qnaTitle" placeholder="질문 제목" required>
+        <textarea id="qnaContent" rows="4" placeholder="질문 내용을 입력하세요" required></textarea>
+        <button type="submit">질문 등록</button>
+      </form>
+
+      <!-- QNA 리스트 -->
+      <div id="qnaList" class="qna-list">
+        <!-- JS로 QNA 항목이 추가됩니다 -->
+      </div>
+    </div>
+  </main>
+
+  <script src="help.js"></script>
+</body>
+</html>

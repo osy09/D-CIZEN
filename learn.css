@@ -1,0 +1,123 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f8fa;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2563eb;
+}
+.logo-text {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2563eb;
+}
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+}
+.login-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.learn-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+  padding: 40px 32px;
+}
+.learn-container h1 {
+  color: #2563eb;
+  margin-bottom: 18px;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+.learn-section {
+  margin-bottom: 36px;
+}
+.learn-section h2 {
+  color: #1e40af;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+.learn-section p {
+  margin-bottom: 10px;
+  color: #333;
+  line-height: 1.7;
+}
+.video-area {
+  margin: 20px 0;
+  text-align: center;
+}
+.video-area iframe {
+  width: 100%;
+  max-width: 600px;
+  height: 340px;
+  border-radius: 12px;
+  border: none;
+  background: #eee;
+}
+.video-link {
+  display: inline-block;
+  margin: 12px 0;
+  color: #2563eb;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.learn-list {
+  margin: 0 0 10px 18px;
+  color: #444;
+}
+.learn-list li {
+  margin-bottom: 6px;
+}
+.age-toggle-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 32px 0 24px 0;
+}
+.age-toggle-btn {
+  padding: 10px 28px;
+  border: 2px solid #2563eb;
+  background: #fff;
+  color: #2563eb;
+  border-radius: 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.age-toggle-btn.active {
+  background: #2563eb;
+  color: #fff;
+}
+.age-content {
+  display: none;
+}
+.age-content.active {
+  display: block;
+}
