@@ -79,7 +79,7 @@ function saveLoginState(user) {
 
 function redirectToMain() {
   setTimeout(() => {
-    window.location.href = "index.html";
+    window.location.href = "main.html";
   }, 1500);
 }
 
@@ -195,7 +195,7 @@ function requireLogin() {
 document.addEventListener('DOMContentLoaded', function() {
   // 이미 로그인된 상태라면 메인 페이지로 리다이렉트
   if (window.location.pathname.includes('login.html') && checkLoginStatus()) {
-    window.location.href = "index.html";
+    window.location.href = "main.html";
   }
 });
 

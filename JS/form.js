@@ -194,7 +194,7 @@ function logout() {
     
     showNotification('로그아웃되었습니다.', 'success');
     setTimeout(() => {
-      window.location.href = 'index.html';
+      window.location.href = 'main.html';
     }, 1000);
   }
 }

@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <!-- 문서 메타 정보 설정 -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>스마트한 디지털 시민</title>
-  <link rel="stylesheet" href="index.css">
+  
+  <!-- 스타일시트 연결 -->
+  <link rel="stylesheet" href="../CSS/main.css">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet">
 
 </head>
 <body>
-  <!-- 상단 로고와 네비게이션 메뉴 -->
+  <!-- 고정 헤더 영역 (상단 로고와 네비게이션 메뉴) -->
   <header>
     <div class="container">
-      <a href="index.html" class="logo">
+      <!-- 메인 로고 (클릭 시 메인 페이지로 이동) -->
+      <a href="main.html" class="logo">
         <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M19 3 L33 8 V18 C33 27 19 35 19 35 C19 35 5 27 5 18 V8 Z" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
           <circle cx="19" cy="14" r="3" fill="#fff"/>
@@ -23,29 +27,37 @@
         </svg>
         D-CiZen
       </a>
+      
+      <!-- 네비게이션 메뉴 (5개 이상, 2개 이상 해당 페이지로 이동) -->
       <nav>
+        <a href="main.html">홈</a>
         <a href="learn.html">학습</a>
         <a href="form.html">진단</a>
-        <a href="index.html#community-section">커뮤니티</a>
+        <a href="main.html#community-section">커뮤니티</a>
         <a href="help.html">도움말</a>
       </nav>
-      <button class="login-btn">로그인</button>
+      
+      <!-- 로그인 버튼 -->
+      <button class="login-btn" onclick="window.location.href='login.html'">로그인</button>
     </div>
   </header>
 
+  <!-- 메인 콘텐츠 영역 -->
   <main>
-    <!-- 배너 -->
+    <!-- 메인 배너 섹션 (Hero Section) -->
     <div class="hero">
-  <div class="hero-text">
-    <h1>스마트한 디지털 시민이 되세요</h1>
-    <p>온라인에서 배우고, 성찰하고, 책임감 있게 행동하세요</p>
-    <div class="buttons">
-      <button onclick="window.location.href='learn.html'">학습 시작하기</button>
-      <button onclick="window.location.href='form.html'">진단 하기</button>
-      <button onclick="window.location.href='#community-section'">내 이야기 공유하기</button>
+      <div class="hero-text">
+        <h1>스마트한 디지털 시민이 되세요</h1>
+        <p>온라인에서 배우고, 성찰하고, 책임감 있게 행동하세요</p>
+        
+        <!-- 메인 액션 버튼들 -->
+        <div class="buttons">
+          <button onclick="window.location.href='learn.html'">학습 시작하기</button>
+          <button onclick="window.location.href='form.html'">진단 하기</button>
+          <button onclick="window.location.href='#community-section'">내 이야기 공유하기</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
 <!-- 교육 허브 -->
 <section class="education-hub">
@@ -102,6 +114,141 @@
     </div>
   </div>
 </section>
+
+<!-- 디지털 시민의식 현황 -->
+<section class="statistics-section">
+  <div class="container">
+    <h2>디지털 시민의식 현황</h2>
+    <p>최근 조사 결과를 통해 본 디지털 시민의식 현황을 확인해보세요.</p>
+    
+    <!-- 통계 테이블 -->
+    <div class="table-container">
+      <table class="statistics-table">
+        <thead>
+          <tr>
+            <th>연령대</th>
+            <th>참여자 수</th>
+            <th>평균 점수</th>
+            <th>개선률</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>초등학생</td>
+            <td>1,245명</td>
+            <td>8.5점</td>
+            <td>+15%</td>
+            <td><span class="status excellent">우수</span></td>
+          </tr>
+          <tr>
+            <td>중학생</td>
+            <td>2,156명</td>
+            <td>7.8점</td>
+            <td>+12%</td>
+            <td><span class="status good">양호</span></td>
+          </tr>
+          <tr>
+            <td>고등학생</td>
+            <td>1,892명</td>
+            <td>7.2점</td>
+            <td>+8%</td>
+            <td><span class="status average">보통</span></td>
+          </tr>
+          <tr>
+            <td>성인</td>
+            <td>3,421명</td>
+            <td>6.9점</td>
+            <td>+5%</td>
+            <td><span class="status needs-improvement">개선필요</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 뉴스레터 구독 폼 -->
+<section class="newsletter-section">
+  <div class="container">
+    <h2>디지털 시민 뉴스레터</h2>
+    <p>최신 디지털 시민의식 소식과 팁을 이메일로 받아보세요.</p>
+    
+    <form class="newsletter-form" id="newsletterForm">
+      <div class="form-group">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" required placeholder="이름을 입력하세요">
+      </div>
+      
+      <div class="form-group">
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email" required placeholder="example@email.com">
+      </div>
+      
+      <div class="form-group">
+        <label for="age">연령대</label>
+        <select id="age" name="age" required>
+          <option value="">선택하세요</option>
+          <option value="child">초등학생</option>
+          <option value="teen">중/고등학생</option>
+          <option value="adult">성인</option>
+          <option value="senior">시니어</option>
+        </select>
+      </div>
+      
+      <div class="form-group checkbox-group">
+        <input type="checkbox" id="privacy" name="privacy" required>
+        <label for="privacy">개인정보 처리방침에 동의합니다</label>
+      </div>
+      
+      <button type="submit" class="newsletter-btn">구독하기</button>
+    </form>
+  </div>
+</section>
+
+<!-- 디지털 시민 기본 가이드라인 -->
+<section class="guidelines-section">
+  <div class="container">
+    <h2>디지털 시민 기본 가이드라인</h2>
+    <p>안전하고 책임감 있는 디지털 생활을 위한 기본 원칙들입니다.</p>
+    
+    <div class="guidelines-grid">
+      <div class="guideline-card">
+        <h3><i class="ri-user-heart-line"></i> 온라인 예절</h3>
+        <ul class="guideline-list">
+          <li>타인을 존중하고 배려하는 언어 사용</li>
+          <li>악성 댓글이나 괴롭힘 금지</li>
+          <li>개인정보 무단 공유 금지</li>
+          <li>저작권 존중 및 출처 명시</li>
+          <li>허위정보 유포 방지</li>
+        </ul>
+      </div>
+      
+      <div class="guideline-card">
+        <h3><i class="ri-shield-user-line"></i> 개인정보 보호</h3>
+        <ol class="guideline-list ordered">
+          <li>강력한 비밀번호 설정 및 정기 변경</li>
+          <li>2단계 인증 활성화</li>
+          <li>개인정보 공개 범위 설정</li>
+          <li>의심스러운 링크 클릭 금지</li>
+          <li>공공 WiFi 사용 시 주의사항 준수</li>
+        </ol>
+      </div>
+      
+      <div class="guideline-card">
+        <h3><i class="ri-mental-health-line"></i> 디지털 웰빙</h3>
+        <ul class="guideline-list">
+          <li>적절한 디지털 기기 사용 시간 관리</li>
+          <li>온라인-오프라인 균형 유지</li>
+          <li>디지털 디톡스 정기 실시</li>
+          <li>건강한 온라인 관계 형성</li>
+          <li>사이버 중독 예방 및 관리</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 커뮤니티, 사례공유 -->
 <section id="community-section" class="community-section">
   <h2>커뮤니티 & 사례 공유</h2>
@@ -145,6 +292,7 @@
     <button class="discussion-btn" onclick="window.location.href='#community-section'">토론 참여하기</button>
   </div>
 </section>
+<!-- 신고 & 도움말 센터 -->
 <section id="help" class="help-section">
   <div class="container">
     <div class="section-header">
@@ -153,7 +301,6 @@
     </div>
 
     <div class="card-grid">
-      <!-- Report Tool -->
       <div class="cardg report-card">
         <div class="icon-container red">
           <span>⚠️</span>
@@ -168,7 +315,6 @@
         </div>
       </div>
 
-      <!-- Help Center -->
       <div class="cardg help-card">
         <div class="icon-container green">
           <span>🤝</span>
@@ -184,7 +330,6 @@
       </div>
     </div>
 
-    <!-- Partner Resources -->
     <div class="partners-card">
       <h4>Our Support Partners</h4>
       <div class="partners">
@@ -193,7 +338,7 @@
           <span>National Cybersecurity Alliance</span>
         </div>
         <div class="partner">
-          <span class="icon purple">�</span>
+          <span class="icon purple">🏛️</span>
           <span>Family Online Safety Institute</span>
         </div>
         <div class="partner">
@@ -210,12 +355,12 @@
 </section>
   </main>
 
-<!-- Footer -->
+<!-- 하단 푸터 영역 -->
 <footer class="footer">
   <div class="container">
     <div class="footer-content">
       <div class="footer-brand">
-        <a href="index.html" class="footer-logo">
+        <a href="main.html" class="footer-logo">
           <svg width="28" height="28" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 3 L33 8 V18 C33 27 19 35 19 35 C19 35 5 27 5 18 V8 Z" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
             <circle cx="19" cy="14" r="3" fill="#fff"/>
@@ -231,7 +376,7 @@
       
       <div class="footer-nav">
         <h4>서비스</h4>
-        <a href="index.html">홈</a>
+        <a href="main.html">홈</a>
         <a href="learn.html">학습</a>
         <a href="form.html">진단</a>
         <a href="help.html">도움말</a>
@@ -266,5 +411,6 @@
 
 </body>
 
-<script src="index.js"></script>
+<!-- JavaScript 파일 연결 -->
+<script src="../JS/main.js"></script>
 </html>
