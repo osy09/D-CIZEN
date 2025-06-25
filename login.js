@@ -1,57 +1,206 @@
-// 간단한 프론트엔드 로그인/로그아웃 예시 (서버 없이 동작)
+// D-CiZen 로그인 시스템 (개선된 버전)
 
-// 로그인 폼 요소
+// DOM 요소
 const loginForm = document.getElementById('loginForm');
 const loginError = document.getElementById('loginError');
 const loginSuccess = document.getElementById('loginSuccess');
+const submitButton = loginForm?.querySelector('button[type="submit"]');
 
-// 데모 계정 (아이디: testuser, 비밀번호: 1234)
+// 데모 계정
 const DEMO_USER = { username: "testuser", password: "1234" };
+
+// 유틸리티 함수
+function showMessage(element, message, isError = false) {
+  element.textContent = message;
+  element.style.display = "block";
+  
+  // 에러/성공 메시지 자동 사라짐
+  if (!isError) {
+    setTimeout(() => {
+      element.style.display = "none";
+    }, 3000);
+  }
+}
+
+function hideMessages() {
+  loginError.style.display = "none";
+  loginSuccess.style.display = "none";
+}
+
+function setLoading(isLoading) {
+  if (submitButton) {
+    submitButton.disabled = isLoading;
+    if (isLoading) {
+      submitButton.classList.add('loading');
+      submitButton.innerHTML = '<i class="ri-loader-2-line"></i> 로그인 중...';
+    } else {
+      submitButton.classList.remove('loading');
+      submitButton.innerHTML = '<i class="ri-login-circle-line"></i> 로그인';
+    }
+  }
+}
+
+function validateInput(username, password) {
+  if (!username || !password) {
+    showMessage(loginError, "아이디와 비밀번호를 모두 입력하세요.", true);
+    return false;
+  }
+  
+  if (username.length < 3) {
+    showMessage(loginError, "아이디는 3자 이상이어야 합니다.", true);
+    return false;
+  }
+  
+  if (password.length < 4) {
+    showMessage(loginError, "비밀번호는 4자 이상이어야 합니다.", true);
+    return false;
+  }
+  
+  return true;
+}
+
+function authenticate(username, password) {
+  // 실제 환경에서는 서버 API 호출
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      if (username === DEMO_USER.username && password === DEMO_USER.password) {
+        resolve({ success: true, user: { username, name: "테스트 사용자" } });
+      } else {
+        resolve({ success: false, message: "아이디 또는 비밀번호가 올바르지 않습니다." });
+      }
+    }, 1000); // 네트워크 지연 시뮬레이션
+  });
+}
+
+function saveLoginState(user) {
+  localStorage.setItem('isLogin', 'true');
+  localStorage.setItem('user', JSON.stringify(user));
+  localStorage.setItem('loginTime', new Date().toISOString());
+}
+
+function redirectToMain() {
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 1500);
+}
 
 // 로그인 폼 제출 이벤트
 if (loginForm) {
-  loginForm.addEventListener('submit', function(e) {
+  loginForm.addEventListener('submit', async function(e) {
     e.preventDefault();
-    loginError.style.display = "none";
-    loginSuccess.style.display = "none";
-
+    
+    hideMessages();
+    
     const username = loginForm.username.value.trim();
     const password = loginForm.password.value;
-
-    if (!username || !password) {
-      loginError.textContent = "아이디와 비밀번호를 모두 입력하세요.";
-      loginError.style.display = "block";
+    
+    // 입력 검증
+    if (!validateInput(username, password)) {
       return;
     }
-
-    if (username === DEMO_USER.username && password === DEMO_USER.password) {
-      // 로그인 성공 시 localStorage에 상태 저장
-      localStorage.setItem('isLogin', 'true');
-      loginSuccess.textContent = "로그인 성공! 환영합니다.";
-      loginSuccess.style.display = "block";
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 1000);
-    } else {
-      loginError.textContent = "아이디 또는 비밀번호가 올바르지 않습니다.";
-      loginError.style.display = "block";
+    
+    // 로딩 상태 시작
+    setLoading(true);
+    
+    try {
+      // 인증 시도
+      const result = await authenticate(username, password);
+      
+      if (result.success) {
+        // 로그인 성공
+        saveLoginState(result.user);
+        showMessage(loginSuccess, `환영합니다, ${result.user.name}님! 메인 페이지로 이동합니다.`);
+        
+        // 폼 비활성화
+        loginForm.querySelectorAll('input').forEach(input => input.disabled = true);
+        
+        // 메인 페이지로 리다이렉트
+        redirectToMain();
+      } else {
+        // 로그인 실패
+        showMessage(loginError, result.message, true);
+      }
+    } catch (error) {
+      showMessage(loginError, "로그인 중 오류가 발생했습니다. 다시 시도해주세요.", true);
+      console.error('Login error:', error);
+    } finally {
+      setLoading(false);
     }
   });
 }
 
-// 로그아웃 버튼이 있을 경우 로그아웃 기능 연결
-const logoutBtn = document.getElementById('logoutBtn');
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', function() {
-    localStorage.removeItem('isLogin');
-    window.location.href = "login.html";
+// 입력 필드 실시간 검증
+if (loginForm) {
+  const inputs = loginForm.querySelectorAll('input');
+  inputs.forEach(input => {
+    input.addEventListener('input', function() {
+      // 에러 메시지가 표시된 상태에서 입력하면 숨김
+      if (loginError.style.display === 'block') {
+        hideMessages();
+      }
+      
+      // 입력 필드 스타일 개선
+      if (this.value.trim()) {
+        this.style.borderColor = '#3b82f6';
+      } else {
+        this.style.borderColor = '#e5e7eb';
+      }
+    });
+    
+    // 포커스 아웃 시 검증
+    input.addEventListener('blur', function() {
+      if (this.value.trim()) {
+        this.style.borderColor = '#10b981';
+      }
+    });
   });
 }
 
-// 페이지 진입 시 로그인 상태 체크(예시: 로그인 필요 페이지에서 사용)
+// 로그아웃 기능
+function logout() {
+  localStorage.removeItem('isLogin');
+  localStorage.removeItem('user');
+  localStorage.removeItem('loginTime');
+  window.location.href = "login.html";
+}
+
+// 로그인 상태 확인
+function checkLoginStatus() {
+  const isLogin = localStorage.getItem('isLogin');
+  const loginTime = localStorage.getItem('loginTime');
+  
+  if (isLogin && loginTime) {
+    const loginDate = new Date(loginTime);
+    const now = new Date();
+    const timeDiff = now - loginDate;
+    
+    // 24시간 후 자동 로그아웃
+    if (timeDiff > 24 * 60 * 60 * 1000) {
+      logout();
+      return false;
+    }
+    return true;
+  }
+  return false;
+}
+
+// 로그인 필요 페이지 보호
 function requireLogin() {
-  if (!localStorage.getItem('isLogin')) {
+  if (!checkLoginStatus()) {
+    alert('로그인이 필요한 서비스입니다.');
     window.location.href = "login.html";
   }
 }
-// 필요시 requireLogin()을 호출해서 로그인 상태가 아니면 로그인 페이지로 이동하게 할
+
+// 페이지 로드 시 로그인 상태 확인
+document.addEventListener('DOMContentLoaded', function() {
+  // 이미 로그인된 상태라면 메인 페이지로 리다이렉트
+  if (window.location.pathname.includes('login.html') && checkLoginStatus()) {
+    window.location.href = "index.html";
+  }
+});
+
+// 전역 함수로 내보내기
+window.logout = logout;
+window.requireLogin = requireLogin;
+window.checkLoginStatus = checkLoginStatus;

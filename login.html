@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>D-CiZen 로그인</title>
   <link rel="stylesheet" href="login.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
   <!-- 상단 로고와 네비게이션 -->
@@ -37,12 +38,24 @@
     <div class="error" id="loginError"></div>
     <div class="success" id="loginSuccess"></div>
     <form id="loginForm" autocomplete="off">
-      <label for="username">아이디</label>
+      <label for="username">
+        <i class="ri-user-line"></i> 아이디
+      </label>
       <input type="text" id="username" name="username" placeholder="아이디를 입력하세요" required>
-      <label for="password">비밀번호</label>
+      
+      <label for="password">
+        <i class="ri-lock-line"></i> 비밀번호
+      </label>
       <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
-      <button type="submit">로그인</button>
+      
+      <button type="submit">
+        <i class="ri-login-circle-line"></i> 로그인
+      </button>
     </form>
+    
+    <div class="login-help">
+      <p>테스트 계정: <strong>testuser</strong> / <strong>1234</strong></p>
+    </div>
   </div>
 
   <script src="login.js"></script>
