@@ -29,10 +29,10 @@
       <a class="form-bu" href="https://dcizen.dgsw.site">D-CiZen</a>
     </div>
       <nav>
-        <a href="#">학습</a>
+        <a href="learn.html">학습</a>
         <a href="form.html">테스트</a>
-        <a href="#">커뮤니티</a>
-        <a href="#">도움말</a>
+        <a href="#community-section">커뮤니티</a>
+        <a href="help.html">도움말</a>
       </nav>
       <button class="login-btn">로그인</button>
     </div>
@@ -44,11 +44,9 @@
     <h1>스마트한 디지털 시민이 되세요</h1>
     <p>온라인에서 배우고, 성찰하고, 책임감 있게 행동하세요</p>
     <div class="buttons">
-      <button>학습 시작하기</button>
-      <button>
-        <a href="form.html" style="color: inherit; text-decoration: none;">테스트 하기</a>
-      </button>
-      <button>내 이야기 공유하기</button>
+      <button onclick="window.location.href='learn.html'">학습 시작하기</button>
+      <button onclick="window.location.href='form.html'">테스트 하기</button>
+      <button onclick="window.location.href='#community-section'">내 이야기 공유하기</button>
     </div>
   </div>
 </div>
@@ -62,19 +60,19 @@
         <img src="https://readdy.ai/api/search-image?query=Friendly%20cartoon%20illustration%20of%20diverse%20elementary%20school%20children%20using%20tablets%20and%20computers%20safely%20with%20adult%20supervision.%20The%20children%20look%20happy%20and%20engaged%20in%20learning.%20The%20image%20has%20a%20clean%2C%20simple%20background%20with%20soft%20colors%20suitable%20for%20a%20kids%20educational%20platform.&amp;width=400&amp;height=300&amp;seq=2&amp;orientation=landscape" alt="어린이" />
         <h3>어린이 (초등학생)</h3>
         <p>게임과 이야기를 통해 기본적인 온라인 안전과 좋은 디지털 습관을 배우는 재미있는 상호작용 수업입니다.</p>
-        <a href="#">살펴보기 →</a>
+        <a href="learn.html?level=child">살펴보기 →</a>
       </div>
       <div class="card">
         <img src="https://readdy.ai/api/search-image?query=Modern%20illustration%20of%20diverse%20teenagers%20using%20smartphones%2C%20laptops%20and%20social%20media%20responsibly.%20They%20are%20in%20a%20school%20or%20library%20setting%2C%20collaborating%20and%20helping%20each%20other%20with%20digital%20projects.%20The%20image%20has%20a%20clean%2C%20simple%20background%20with%20soft%20colors%20suitable%20for%20a%20teen%20educational%20platform.&amp;width=400&amp;height=300&amp;seq=3&amp;orientation=landscape" alt="청소년" />
         <h3>청소년 (중/고등학생)</h3>
         <p>소셜 미디어 예절, 디지털 발자국, 안전한 온라인 관계 형성에 대한 실용적인 가이드입니다.</p>
-        <a href="#">살펴보기 →</a>
+        <a href="learn.html?level=teen">살펴보기 →</a>
       </div>
       <div class="card">
         <img src="https://readdy.ai/api/search-image?query=Professional%20adults%20of%20diverse%20backgrounds%20in%20a%20modern%20office%20or%20home%20setting%2C%20using%20digital%20devices%20responsibly.%20They%20are%20engaged%20in%20online%20learning%2C%20video%20conferencing%2C%20and%20digital%20collaboration.%20The%20image%20has%20a%20clean%2C%20simple%20background%20with%20soft%20colors%20suitable%20for%20an%20adult%20educational%20platform.&amp;width=400&amp;height=300&amp;seq=4&amp;orientation=landscape" alt="성인" />
         <h3>성인</h3>
         <p>개인정보 보호, 허위정보 식별, 디지털 세상에서의 자녀 지도에 대한 심화 자료입니다.</p>
-        <a href="#">살펴보기 →</a>
+        <a href="learn.html?level=adult">살펴보기 →</a>
       </div>
     </div>
   </section>
@@ -103,13 +101,13 @@
             <div class="label">결과</div>
         </div>
         </div>
-      <button class="quiz-btn"><a href="form.html" style="color: white; text-decoration: none;">빠른 테스트 시작하기 →</a></button>
+      <button class="quiz-btn" onclick="window.location.href='form.html'">빠른 테스트 시작하기 →</button>
       <p class="quiz-note">테스트 결과는 비공개로 처리되며 본인에게만 공개됩니다.</p>
     </div>
   </div>
 </section>
 <!-- 커뮤니티, 사례공유 -->
-<section class="community-section">
+<section id="community-section" class="community-section">
   <h2>커뮤니티 & 사례 공유</h2>
   <p>실제 디지털 윤리 사례를 통해 배우고, 우리 커뮤니티에서 여러분의 경험을 공유해보세요.</p>
 
@@ -119,7 +117,7 @@
       <span class="badge blue">사례 연구</span>
       <h3>개인정보 설정 실수의 교훈</h3>
       <p>소셜 미디어의 개인정보 설정 미흡으로 대학생의 취업에 영향을 미친 사례</p>
-      <a href="#">전체 내용 보기 →</a>
+      <a href="#community-section">전체 내용 보기 →</a>
     </div>
 
     <div class="card">
@@ -127,7 +125,7 @@
       <span class="badge green">전문가 분석</span>
       <h3>바이럴 허위정보 식별하기</h3>
       <p>전문가가 분석하는 수백만 명에게 퍼진 허위 건강정보의 진실</p>
-      <a href="#">전체 내용 보기 →</a>
+      <a href="#community-section">전체 내용 보기 →</a>
     </div>
 
     <div class="card">
@@ -135,7 +133,7 @@
       <span class="badge purple">커뮤니티 이야기</span>
       <h3>디지털 격차 해소하기</h3>
       <p>지역 어르신들을 위한 디지털 교육 프로그램을 시작한 민지의 이야기</p>
-      <a href="#">전체 내용 보기 →</a>
+      <a href="#community-section">전체 내용 보기 →</a>
     </div>
 
     <div class="card">
@@ -143,12 +141,12 @@
       <span class="badge red">사용자 경험</span>
       <h3>사이버 괴롭힘에 맞서기</h3>
       <p>온라인 괴롭힘을 목격했을 때 안전하게 대처한 중학생의 이야기</p>
-      <a href="#">전체 내용 보기 →</a>
+      <a href="#community-section">전체 내용 보기 →</a>
     </div>
   </div>
 
   <div class="center-btn">
-    <button class="discussion-btn">토론 참여하기</button>
+    <button class="discussion-btn" onclick="window.location.href='#community-section'">토론 참여하기</button>
   </div>
 </section>
 <section id="help" class="help-section">
@@ -167,7 +165,7 @@
         <h3>문제 신고하기</h3>
         <p>익명 신고 도구를 통해 사이버 괴롭힘, 부적절한 콘텐츠, 우려되는 온라인 행동을 안전하게 신고하세요.</p>
         <div class="button-container">
-          <button class="btn btn-report">
+          <button class="btn btn-report" onclick="window.location.href='help.html#report'">
             <span class="btn-icon">🛡️</span>
             신고하기
           </button>
@@ -182,7 +180,7 @@
         <h3>도움받기</h3>
         <p>디지털 시민의식 관련 어려움이 있다면 전문 상담팀과 실시간 채팅으로 상담받으세요.</p>
         <div class="button-container">
-          <button class="btn btn-help">
+          <button class="btn btn-help" onclick="window.location.href='help.html#contact'">
             <span class="btn-icon">💬</span>
             채팅 상담 시작하기
           </button>
@@ -240,40 +238,40 @@
         <div class="footer-column">
           <h4>학습</h4>
           <ul>
-            <li><a href="#">어린이 교육</a></li>
-            <li><a href="#">청소년 교육</a></li>
-            <li><a href="#">성인 교육</a></li>
-            <li><a href="#">교육 자료</a></li>
+            <li><a href="learn.html?level=child">어린이 교육</a></li>
+            <li><a href="learn.html?level=teen">청소년 교육</a></li>
+            <li><a href="learn.html?level=adult">성인 교육</a></li>
+            <li><a href="learn.html">교육 자료</a></li>
           </ul>
         </div>
         
         <div class="footer-column">
           <h4>커뮤니티</h4>
           <ul>
-            <li><a href="#">사례 공유</a></li>
-            <li><a href="#">토론 게시판</a></li>
-            <li><a href="#">전문가 칼럼</a></li>
-            <li><a href="#">Q&A</a></li>
+            <li><a href="#community-section">사례 공유</a></li>
+            <li><a href="#community-section">토론 게시판</a></li>
+            <li><a href="#community-section">전문가 칼럼</a></li>
+            <li><a href="#community-section">Q&A</a></li>
           </ul>
         </div>
         
         <div class="footer-column">
           <h4>도움말</h4>
           <ul>
-            <li><a href="#">신고하기</a></li>
-            <li><a href="#">상담 받기</a></li>
-            <li><a href="#">자주 묻는 질문</a></li>
-            <li><a href="#">이용 가이드</a></li>
+            <li><a href="help.html#report">신고하기</a></li>
+            <li><a href="help.html#contact">상담 받기</a></li>
+            <li><a href="help.html#faq">자주 묻는 질문</a></li>
+            <li><a href="help.html">이용 가이드</a></li>
           </ul>
         </div>
         
         <div class="footer-column">
           <h4>회사 정보</h4>
           <ul>
-            <li><a href="#">소개</a></li>
-            <li><a href="#">개인정보처리방침</a></li>
-            <li><a href="#">이용약관</a></li>
-            <li><a href="#">문의하기</a></li>
+            <li><a href="#hero">소개</a></li>
+            <li><a href="#help">개인정보처리방침</a></li>
+            <li><a href="#help">이용약관</a></li>
+            <li><a href="help.html#contact">문의하기</a></li>
           </ul>
         </div>
       </div>

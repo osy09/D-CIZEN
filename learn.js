@@ -29,6 +29,9 @@ function initializeLearnPage() {
   // 레벨 탭 기능 초기화
   initializeLevelTabs();
   
+  // URL 파라미터 확인하여 특정 레벨로 이동
+  checkURLParameters();
+  
   // 진행 현황 업데이트
   updateProgressDisplay();
   
@@ -199,6 +202,23 @@ function updateProgressDisplay() {
       adult: '성인 (19세 이상)'
     };
     levelTitle.textContent = `${levelNames[currentLevel]} 학습 진행률`;
+  }
+}
+
+// URL 파라미터 확인하여 특정 레벨로 이동
+function checkURLParameters() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const level = urlParams.get('level');
+  
+  if (level && ['child', 'teen', 'adult'].includes(level)) {
+    // URL에서 지정된 레벨로 전환
+    switchLevel(level);
+    
+    // 해당 섹션으로 스크롤
+    const levelSection = document.querySelector('.level-selection');
+    if (levelSection) {
+      levelSection.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }
 
