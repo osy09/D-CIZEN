@@ -1,117 +1,193 @@
-/* D-CiZen 로그인 페이지 - 통합 디자인 */
-
-/* Reset & 기본 설정 */
+/*/* CSS Reset 및 기본 설정 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* CSS 변수 정의 */
+:root {
+  /* 색상 팔레트 */
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --primary-dark: #1d4ed8;
+  --secondary: #64748b;
+  --accent: #f59e0b;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  
+  /* 그라데이션 */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --gradient-warm: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --gradient-cool: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  --gradient-success: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  --gradient-learning: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  
+  /* 그림자 */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.3);
+  
+  /* 타이포그래피 */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  
+  /* 간격 */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  
+  /* 경계선 */
+  --border-radius: 0.5rem;
+  --border-radius-lg: 1rem;
+  --border-radius-xl: 1.5rem;
+  
+  /* 애니메이션 */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease;
+  --transition-slow: all 0.5s ease;
+}
+
 body {
-  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-family);
   line-height: 1.6;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   color: #333;
   overflow-x: hidden;
   min-height: 100vh;
+  padding-top: 80px;
 }
 
-/* 헤더 스타일 - 메인 페이지와 동일 */
+/* 헤더 */
 header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
-  transition: all 0.3s ease;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  transition: var(--transition);
 }
 
 header .container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  max-width: 80rem;
-  margin: 0 auto;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-}
-
-.logo-text {
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-xl);
   font-weight: 700;
-  font-size: 1.25rem;
-  color: #2563eb;
+  color: var(--primary);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: var(--transition);
 }
 
-.logo-text:hover {
-  color: #1d4ed8;
+.logo:hover {
+  transform: translateY(-2px);
+}
+
+.logo svg {
+  transition: var(--transition);
+}
+
+.logo:hover svg {
+  transform: scale(1.1);
 }
 
 nav {
   display: flex;
-  align-items: center;
-  gap: 2rem;
+  gap: var(--spacing-xl);
 }
 
 nav a {
+  position: relative;
+  padding: var(--spacing-sm) var(--spacing-md);
   color: #64748b;
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  position: relative;
+  transition: var(--transition);
+  border-radius: var(--border-radius);
 }
 
 nav a:hover {
-  color: #2563eb;
-  transform: translateY(-1px);
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+nav a.active {
+  color: var(--primary);
+  background: rgba(37, 99, 235, 0.1);
 }
 
 nav a::after {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #2563eb, #3b82f6);
-  transition: width 0.3s ease;
+  bottom: -5px;
+  left: 50%;
+  background: var(--gradient-primary);
+  transition: var(--transition);
+  transform: translateX(-50%);
 }
 
-nav a:hover::after {
-  width: 100%;
+nav a:hover::after,
+nav a.active::after {
+  width: 80%;
 }
 
 .login-btn {
-  padding: 0.75rem 1.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #94a3b8;
-  background: #f1f5f9;
+  background: var(--gradient-primary);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
   border: none;
-  border-radius: 0.75rem;
-  cursor: not-allowed;
-  transition: all 0.3s ease;
-  opacity: 0.7;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
 }
 
-.login-btn:disabled {
-  background: #f1f5f9;
-  color: #94a3b8;
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 공통 유틸리티 클래스 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
 }
 
 /* 로그인 폼 컨테이너 */
 .login-container {
   max-width: 450px;
-  margin: 4rem auto;
+  margin: 2rem auto;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -454,16 +530,22 @@ button[type="submit"]:active {
 
 @media (max-width: 768px) {
   header .container {
-    padding: 1rem;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
   }
   
   nav {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    gap: 1rem;
+    gap: var(--spacing-md);
+  }
+  
+  nav a {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-sm);
+  }
+  
+  body {
+    padding-top: 120px;
   }
   
   .login-container {
