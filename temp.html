@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>디지털 시민의식 & 사이버 윤리</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3B82F6',secondary:'#10B981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: 'Poppins', sans-serif;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.hero-section {
+background-image: url('https://readdy.ai/api/search-image?query=A%20modern%2C%20inclusive%20digital%20education%20scene%20with%20diverse%20people%20using%20technology%20safely.%20The%20left%20side%20has%20a%20clean%2C%20gradient%20background%20that%20transitions%20smoothly%20to%20the%20right%20side%20where%20diverse%20characters%20interact%20with%20digital%20devices.%20The%20image%20should%20have%20soft%20colors%20and%20a%20friendly%20atmosphere%2C%20perfect%20for%20an%20educational%20website%20about%20digital%20citizenship.%20The%20left%20side%20must%20be%20kept%20relatively%20empty%20and%20clean%20for%20text%20overlay.&width=1600&height=800&seq=1&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+.card-hover:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
+}
+.custom-checkbox {
+appearance: none;
+-webkit-appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #3B82F6;
+border-radius: 4px;
+outline: none;
+cursor: pointer;
+position: relative;
+}
+.custom-checkbox:checked {
+background-color: #3B82F6;
+}
+.custom-checkbox:checked::after {
+content: '';
+position: absolute;
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- Navigation -->
+<nav class="bg-white shadow-sm fixed w-full z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center">
+<a href="#" class="font-['Pacifico'] text-primary text-2xl">logo</a>
+<div class="hidden md:ml-10 md:flex md:space-x-8">
+<a href="#learn" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">학습</a>
+<a href="#test" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">테스트</a>
+<a href="#community" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">커뮤니티</a>
+<a href="#help" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">도움말</a>
+</div>
+</div>
+<div class="flex items-center">
+<button class="bg-primary text-white px-4 py-2 rounded-button whitespace-nowrap hover:bg-blue-600 transition-colors">로그인</button>
+<div class="ml-4 flex items-center md:hidden">
+<button type="button" class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-gray-700 focus:outline-none">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="hero-section pt-24 pb-16 md:pt-32 md:pb-24">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">스마트한 디지털 시민이 되세요</h1>
+<h2 class="text-xl md:text-2xl text-gray-700 mb-8">온라인에서 배우고, 성찰하고, 책임감 있게 행동하세요</h2>
+<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+<button class="bg-primary text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-blue-600 transition-colors text-base font-medium">학습 시작하기</button>
+<button class="bg-white text-primary border border-primary px-6 py-3 rounded-button whitespace-nowrap hover:bg-gray-50 transition-colors text-base font-medium">테스트 하기</button>
+<button class="bg-white text-gray-700 border border-gray-300 px-6 py-3 rounded-button whitespace-nowrap hover:bg-gray-50 transition-colors text-base font-medium">내 이야기 공유하기</button>
+</div>
+</div>
+<div class="w-full md:w-1/2">
+<!-- Hero image is set as background -->
+</div>
+</div>
+</div>
+</section>
+<!-- Education Hub -->
+<section id="learn" class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">교육 허브</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto">연령대별로 맞춤 제작된 자료를 통해 디지털 시민의식 능력을 키워보세요.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Kids Card -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover border border-gray-100">
+<div class="h-48 bg-blue-50 flex items-center justify-center">
+<img src="https://readdy.ai/api/search-image?query=Friendly%20cartoon%20illustration%20of%20diverse%20elementary%20school%20children%20using%20tablets%20and%20computers%20safely%20with%20adult%20supervision.%20The%20children%20look%20happy%20and%20engaged%20in%20learning.%20The%20image%20has%20a%20clean%2C%20simple%20background%20with%20soft%20colors%20suitable%20for%20a%20kids%20educational%20platform.&width=400&height=300&seq=2&orientation=landscape" alt="Kids Digital Learning" class="h-full w-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-2">어린이 (초등학생)</h3>
+<p class="text-gray-600 mb-4">게임과 이야기를 통해 기본적인 온라인 안전과 좋은 디지털 습관을 배우는 재미있는 상호작용 수업입니다.</p>
+<button class="text-primary font-medium flex items-center !rounded-button whitespace-nowrap">
+살펴보기
+<span class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</span>
+</button>
+</div>
+</div>
+<!-- Teens Card -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover border border-gray-100">
+<div class="h-48 bg-green-50 flex items-center justify-center">
+<img src="https://readdy.ai/api/search-image?query=Modern%20illustration%20of%20diverse%20teenagers%20using%20smartphones%2C%20laptops%20and%20social%20media%20responsibly.%20They%20are%20in%20a%20school%20or%20library%20setting%2C%20collaborating%20and%20helping%20each%20other%20with%20digital%20projects.%20The%20image%20has%20a%20clean%2C%20simple%20background%20with%20soft%20colors%20suitable%20for%20a%20teen%20educational%20platform.&width=400&height=300&seq=3&orientation=landscape" alt="Teens Digital Learning" class="h-full w-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-2">청소년 (중/고등학생)</h3>
+<p class="text-gray-600 mb-4">소셜 미디어 예절, 디지털 발자국, 안전한 온라인 관계 형성에 대한 실용적인 가이드입니다.</p>
+<button class="text-primary font-medium flex items-center !rounded-button whitespace-nowrap">
+살펴보기
+<span class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</span>
+</button>
+</div>
+</div>
+<!-- Adults Card -->
+<div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover border border-gray-100">
+<div class="h-48 bg-purple-50 flex items-center justify-center">
+<img src="https://readdy.ai/api/search-image?query=Professional%20adults%20of%20diverse%20backgrounds%20in%20a%20modern%20office%20or%20home%20setting%2C%20using%20digital%20devices%20responsibly.%20They%20are%20engaged%20in%20online%20learning%2C%20video%20conferencing%2C%20and%20digital%20collaboration.%20The%20image%20has%20a%20clean%2C%20simple%20background%20with%20soft%20colors%20suitable%20for%20an%20adult%20educational%20platform.&width=400&height=300&seq=4&orientation=landscape" alt="Adults Digital Learning" class="h-full w-full object-cover object-top">
+</div>
+<div class="p-6">
+<h3 class="text-xl font-semibold text-gray-900 mb-2">성인</h3>
+<p class="text-gray-600 mb-4">개인정보 보호, 허위정보 식별, 디지털 세상에서의 자녀 지도에 대한 심화 자료입니다.</p>
+<button class="text-primary font-medium flex items-center !rounded-button whitespace-nowrap">
+살펴보기
+<span class="w-5 h-5 ml-1 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Self-Check Test Section -->
+<section id="test" class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+<div class="flex flex-col md:flex-row">
+<div class="w-full md:w-1/2 bg-blue-50 p-6 flex items-center justify-center">
+<img src="https://readdy.ai/api/search-image?query=A%20person%20taking%20an%20online%20quiz%20or%20assessment%20on%20digital%20citizenship.%20The%20illustration%20shows%20someone%20thoughtfully%20answering%20questions%20on%20a%20tablet%20or%20computer%20with%20digital%20ethics%20symbols%20or%20icons%20floating%20around%20them.%20The%20image%20has%20a%20clean%2C%20simple%20background%20with%20soft%20blue%20colors%20suitable%20for%20a%20self-assessment%20section.&width=500&height=400&seq=5&orientation=landscape" alt="Digital Citizenship Test" class="max-h-80 object-contain">
+</div>
+<div class="w-full md:w-1/2 p-8 md:p-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">나는 책임감 있는 디지털 시민인가요?</h2>
+<p class="text-gray-600 mb-6">5분 동안 간단한 평가를 통해 디지털 행동을 점검하고 맞춤형 개선 방안을 받아보세요.</p>
+<div class="flex mb-8">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">1</div>
+<span class="text-xs mt-2 text-gray-600">답변</span>
+</div>
+<div class="flex-1 mx-2 mt-5">
+<div class="h-1 bg-primary"></div>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold">2</div>
+<span class="text-xs mt-2 text-gray-600">분석</span>
+</div>
+<div class="flex-1 mx-2 mt-5">
+<div class="h-1 bg-gray-200"></div>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-bold">3</div>
+<span class="text-xs mt-2 text-gray-600">결과</span>
+</div>
+</div>
+<button class="w-full bg-primary text-white py-3 px-6 rounded-button whitespace-nowrap hover:bg-blue-600 transition-colors text-base font-medium flex items-center justify-center">
+빠른 테스트 시작하기
+<span class="w-5 h-5 ml-2 flex items-center justify-center">
+<i class="ri-arrow-right-line"></i>
+</span>
+</button>
+<p class="text-sm text-gray-500 mt-4 text-center">테스트 결과는 비공개로 처리되며 본인에게만 공개됩니다.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Community & Case Sharing -->
+<section id="community" class="py-16 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">커뮤니티 & 사례 공유</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto">실제 디지털 윤리 사례를 통해 배우고, 우리 커뮤니티에서 여러분의 경험을 공유해보세요.</p>
+</div>
+<div class="relative">
+<div class="flex overflow-x-auto pb-6 gap-6 hide-scrollbar">
+<!-- Case 1 -->
+<div class="min-w-[300px] max-w-[300px] bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover border border-gray-100">
+<div class="h-40 bg-yellow-50">
+<img src="https://readdy.ai/api/search-image?query=An%20illustration%20representing%20social%20media%20privacy%20issues%2C%20showing%20a%20person%20carefully%20managing%20their%20online%20privacy%20settings%20on%20a%20device.%20The%20image%20should%20have%20a%20clean%2C%20simple%20background%20with%20soft%20colors%20suitable%20for%20a%20case%20study%20about%20digital%20privacy.&width=300&height=200&seq=6&orientation=landscape" alt="Privacy Case Study" class="h-full w-full object-cover object-top">
+</div>
+<div class="p-5">
+<span class="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full">사례 연구</span>
+<h3 class="text-lg font-semibold text-gray-900 mt-2 mb-2">개인정보 설정 실수의 교훈</h3>
+<p class="text-gray-600 text-sm mb-3 line-clamp-2">소셜 미디어의 개인정보 설정 미흡으로 대학생의 취업에 영향을 미친 사례</p>
+<a href="#" class="text-primary text-sm font-medium">전체 내용 보기 →</a>
+</div>
+</div>
+<!-- Case 2 -->
+<div class="min-w-[300px] max-w-[300px] bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover border border-gray-100">
+<div class="h-40 bg-green-50">
+<img src="https://readdy.ai/api/search-image?query=An%20illustration%20showing%20a%20person%20fact-checking%20information%20online%2C%20comparing%20multiple%20sources%20on%20different%20devices.%20The%20image%20should%20have%20a%20clean%2C%20simple%20background%20with%20soft%20colors%20suitable%20for%20a%20case%20study%20about%20misinformation.&width=300&height=200&seq=7&orientation=landscape" alt="Misinformation Case Study" class="h-full w-full object-cover object-top">
+</div>
+<div class="p-5">
+<span class="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded-full">전문가 분석</span>
+<h3 class="text-lg font-semibold text-gray-900 mt-2 mb-2">바이럴 허위정보 식별하기</h3>
+<p class="text-gray-600 text-sm mb-3 line-clamp-2">전문가가 분석하는 수백만 명에게 퍼진 허위 건강정보의 진실</p>
+<a href="#" class="text-primary text-sm font-medium">전체 내용 보기 →</a>
+</div>
+</div>
+<!-- Case 3 -->
+<div class="min-w-[300px] max-w-[300px] bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover border border-gray-100">
+<div class="h-40 bg-purple-50">
+<img src="https://readdy.ai/api/search-image?query=An%20illustration%20showing%20a%20teenager%20helping%20an%20elderly%20person%20use%20technology%20safely%2C%20representing%20intergenerational%20digital%20education.%20The%20image%20should%20have%20a%20clean%2C%20simple%20background%20with%20soft%20colors%20suitable%20for%20a%20community%20story.&width=300&height=200&seq=8&orientation=landscape" alt="Community Story" class="h-full w-full object-cover object-top">
+</div>
+<div class="p-5">
+<span class="text-xs font-medium text-purple-600 bg-purple-50 px-2 py-1 rounded-full">커뮤니티 이야기</span>
+<h3 class="text-lg font-semibold text-gray-900 mt-2 mb-2">디지털 격차 해소하기</h3>
+<p class="text-gray-600 text-sm mb-3 line-clamp-2">지역 어르신들을 위한 디지털 교육 프로그램을 시작한 민지의 이야기</p>
+<a href="#" class="text-primary text-sm font-medium">전체 내용 보기 →</a>
+</div>
+</div>
+<!-- Case 4 -->
+<div class="min-w-[300px] max-w-[300px] bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover border border-gray-100">
+<div class="h-40 bg-red-50">
+<img src="https://readdy.ai/api/search-image?query=An%20illustration%20showing%20a%20person%20standing%20up%20to%20cyberbullying%2C%20protecting%20someone%20online.%20The%20image%20represents%20digital%20courage%20and%20ethical%20intervention.%20The%20image%20should%20have%20a%20clean%2C%20simple%20background%20with%20soft%20colors%20suitable%20for%20a%20case%20about%20online%20intervention.&width=300&height=200&seq=9&orientation=landscape" alt="Cyberbullying Case Study" class="h-full w-full object-cover object-top">
+</div>
+<div class="p-5">
+<span class="text-xs font-medium text-red-600 bg-red-50 px-2 py-1 rounded-full">사용자 경험</span>
+<h3 class="text-lg font-semibold text-gray-900 mt-2 mb-2">사이버 괴롭힘에 맞서기</h3>
+<p class="text-gray-600 text-sm mb-3 line-clamp-2">온라인 괴롭힘을 목격했을 때 안전하게 대처한 중학생의 이야기</p>
+<a href="#" class="text-primary text-sm font-medium">전체 내용 보기 →</a>
+</div>
+</div>
+</div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center cursor-pointer -ml-6 hidden md:flex">
+<i class="ri-arrow-left-s-line ri-xl text-gray-600"></i>
+</div>
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center cursor-pointer -mr-6 hidden md:flex">
+<i class="ri-arrow-right-s-line ri-xl text-gray-600"></i>
+</div>
+</div>
+<div class="text-center mt-10">
+<button class="bg-primary text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-blue-600 transition-colors text-base font-medium">토론 참여하기</button>
+</div>
+</div>
+</section>
+<!-- Report & Help Center -->
+<section id="help" class="py-16 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-4">신고 & 도움말 센터</h2>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto">디지털 세상의 어려움을 함께 해결하고 필요한 도움을 제공해드립니다.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+<!-- Report Tool -->
+<div class="bg-white rounded-lg shadow-md p-8 transition-all duration-300 card-hover border border-gray-100">
+<div class="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center mb-6 mx-auto md:mx-0">
+<span class="w-8 h-8 flex items-center justify-center text-red-500">
+<i class="ri-flag-line ri-lg"></i>
+</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-3 text-center md:text-left">문제 신고하기</h3>
+<p class="text-gray-600 mb-6 text-center md:text-left">익명 신고 도구를 통해 사이버 괴롭힘, harassment, 우려되는 온라인 행동을 안전하게 신고하세요.</p>
+<div class="text-center md:text-left">
+<button class="bg-red-500 text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-red-600 transition-colors text-base font-medium">신고하기</button>
+</div>
+</div>
+<!-- Help Center -->
+<div class="bg-white rounded-lg shadow-md p-8 transition-all duration-300 card-hover border border-gray-100">
+<div class="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-6 mx-auto md:mx-0">
+<span class="w-8 h-8 flex items-center justify-center text-green-500">
+<i class="ri-customer-service-line ri-lg"></i>
+</span>
+</div>
+<h3 class="text-xl font-semibold text-gray-900 mb-3 text-center md:text-left">도움받기</h3>
+<p class="text-gray-600 mb-6 text-center md:text-left">디지털 시민의식 관련 어려움이 있다면 전문 상담팀과 실시간 채팅으로 상담받으세요.</p>
+<div class="text-center md:text-left">
+<button class="bg-green-500 text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-green-600 transition-colors text-base font-medium">채팅 상담 시작하기</button>
+</div>
+</div>
+</div>
+<!-- Partner Resources -->
+<div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+<h4 class="text-base font-medium text-gray-700 mb-4 text-center">Our Support Partners</h4>
+<div class="flex flex-wrap justify-center gap-8">
+<div class="flex items-center">
+<span class="w-6 h-6 flex items-center justify-center text-blue-500 mr-2">
+<i class="ri-government-line"></i>
+</span>
+<span class="text-sm text-gray-600">National Cybersecurity Alliance</span>
+</div>
+<div class="flex items-center">
+<span class="w-6 h-6 flex items-center justify-center text-purple-500 mr-2">
+<i class="ri-parent-line"></i>
+</span>
+<span class="text-sm text-gray-600">Family Online Safety Institute</span>
+</div>
+<div class="flex items-center">
+<span class="w-6 h-6 flex items-center justify-center text-yellow-500 mr-2">
+<i class="ri-mental-health-line"></i>
+</span>
+<span class="text-sm text-gray-600">Digital Wellness Institute</span>
+</div>
+<div class="flex items-center">
+<span class="w-6 h-6 flex items-center justify-center text-green-500 mr-2">
+<i class="ri-school-line"></i>
+</span>
+<span class="text-sm text-gray-600">Common Sense Education</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="py-16 bg-blue-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-2xl mx-auto">
+<h2 class="text-2xl font-bold text-gray-900 mb-3">최신 소식 받기</h2>
+<p class="text-gray-600 mb-6">뉴스레터를 구독하고 디지털 시민의식 관련 최신 자료와 업데이트를 받아보세요.</p>
+<form class="flex flex-col sm:flex-row gap-3">
+<div class="flex-1">
+<input type="email" placeholder="이메일 주소를 입력하세요" class="w-full px-4 py-3 rounded-button border-none shadow-sm focus:ring-2 focus:ring-primary focus:outline-none text-sm">
+</div>
+<button type="submit" class="bg-primary text-white px-6 py-3 rounded-button whitespace-nowrap hover:bg-blue-600 transition-colors text-base font-medium">구독하기</button>
+</form>
+<div class="mt-4 flex items-center justify-center gap-2">
+<input type="checkbox" id="privacy-consent" class="custom-checkbox">
+<label for="privacy-consent" class="text-sm text-gray-600">이메일 수신 및 <a href="#" class="text-primary">개인정보 처리방침</a>에 동의합니다</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div>
+<a href="#" class="font-['Pacifico'] text-white text-2xl">logo</a>
+<p class="mt-4 text-gray-400 text-sm">Empowering responsible digital citizens through education, assessment, and community support.</p>
+<div class="flex mt-6 space-x-4">
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-facebook-fill text-white"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-twitter-x-fill text-white"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-instagram-line text-white"></i>
+</a>
+<a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+<i class="ri-youtube-fill text-white"></i>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Resources</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Learning Materials</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Assessment Tools</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Case Studies</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Parent Guides</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Educator Resources</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Community</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Discussion Forums</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Share Your Story</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Events & Webinars</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Ambassador Program</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Volunteer</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Support</h3>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Report an Issue</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8 mt-8 text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center">
+<p>© 2025 Digital Citizenship Initiative. All rights reserved.</p>
+<div class="flex space-x-4 mt-4 md:mt-0">
+<a href="#" class="hover:text-white transition-colors">Terms</a>
+<a href="#" class="hover:text-white transition-colors">Privacy</a>
+<a href="#" class="hover:text-white transition-colors">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const menuButton = document.querySelector('.ri-menu-line').parentElement;
+const mobileMenu = document.createElement('div');
+mobileMenu.className = 'fixed inset-0 bg-gray-900 bg-opacity-75 z-50 hidden';
+mobileMenu.innerHTML = `
+<div class="bg-white h-full w-3/4 max-w-xs p-5 transform transition-transform">
+<div class="flex justify-between items-center mb-6">
+<a href="#" class="font-['Pacifico'] text-primary text-2xl">logo</a>
+<button class="w-10 h-10 flex items-center justify-center text-gray-500">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<nav class="space-y-4">
+<a href="#learn" class="block py-2 text-gray-700 hover:text-primary font-medium">Learn</a>
+<a href="#test" class="block py-2 text-gray-700 hover:text-primary font-medium">Test</a>
+<a href="#community" class="block py-2 text-gray-700 hover:text-primary font-medium">Community</a>
+<a href="#help" class="block py-2 text-gray-700 hover:text-primary font-medium">Help</a>
+</nav>
+<div class="mt-8">
+<button class="w-full bg-primary text-white px-4 py-2 rounded-button whitespace-nowrap hover:bg-blue-600 transition-colors">Sign In</button>
+</div>
+</div>
+`;
+document.body.appendChild(mobileMenu);
+menuButton.addEventListener('click', function() {
+mobileMenu.classList.remove('hidden');
+mobileMenu.querySelector('.bg-white').classList.add('translate-x-0');
+mobileMenu.querySelector('.bg-white').classList.remove('-translate-x-full');
+document.body.classList.add('overflow-hidden');
+});
+mobileMenu.querySelector('.ri-close-line').parentElement.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+mobileMenu.querySelector('.bg-white').classList.add('-translate-x-full');
+mobileMenu.querySelector('.bg-white').classList.remove('translate-x-0');
+document.body.classList.remove('overflow-hidden');
+});
+mobileMenu.querySelectorAll('nav a').forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+mobileMenu.querySelector('.bg-white').classList.add('-translate-x-full');
+mobileMenu.querySelector('.bg-white').classList.remove('translate-x-0');
+document.body.classList.remove('overflow-hidden');
+});
+});
+});
+</script>
+<script id="carousel-script">
+document.addEventListener('DOMContentLoaded', function() {
+const carousel = document.querySelector('.overflow-x-auto');
+const leftArrow = document.querySelector('.ri-arrow-left-s-line').parentElement;
+const rightArrow = document.querySelector('.ri-arrow-right-s-line').parentElement;
+if (carousel && leftArrow && rightArrow) {
+leftArrow.addEventListener('click', function() {
+carousel.scrollBy({ left: -320, behavior: 'smooth' });
+});
+rightArrow.addEventListener('click', function() {
+carousel.scrollBy({ left: 320, behavior: 'smooth' });
+});
+}
+});
+</script>
+<script id="checkbox-script">
+document.addEventListener('DOMContentLoaded', function() {
+const checkbox = document.getElementById('privacy-consent');
+if (checkbox) {
+checkbox.addEventListener('change', function() {
+if (this.checked) {
+this.classList.add('bg-primary');
+} else {
+this.classList.remove('bg-primary');
+}
+});
+}
+});
+</script>
+</body>
+</html>
