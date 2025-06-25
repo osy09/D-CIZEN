@@ -1,0 +1,108 @@
+/* 전체 배경 및 폰트 */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f8fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* 헤더 스타일 */
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2563eb;
+}
+.logo-text {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2563eb;
+}
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+}
+.login-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* 로그인 폼 스타일 */
+.login-container {
+  max-width: 400px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+  padding: 40px 32px;
+  text-align: center;
+}
+.login-container h2 {
+  margin-bottom: 24px;
+  color: #2563eb;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.login-container label {
+  display: block;
+  text-align: left;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
+}
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f7f8fa;
+}
+.login-container button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+.login-container button[type="submit"]:hover {
+  background: #1e40af;
+}
+.login-container .error {
+  color: #ef4444;
+  margin-bottom: 12px;
+  font-size: 0.98rem;
+  display: none;
+}
+.login-container .success {
+  color: #22c55e;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  display: none;
+}
