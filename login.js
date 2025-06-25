@@ -11,14 +11,13 @@ const DEMO_USER = { username: "testuser", password: "1234" };
 
 // 유틸리티 함수
 function showMessage(element, message, isError = false) {
-  element.textContent = message;
-  element.style.display = "block";
+  // 새로운 알림 시스템 사용
+  const type = isError ? 'error' : 'success';
+  showNotification(message, type);
   
-  // 에러/성공 메시지 자동 사라짐
-  if (!isError) {
-    setTimeout(() => {
-      element.style.display = "none";
-    }, 3000);
+  // 기존 메시지 요소는 숨김
+  if (element) {
+    element.style.display = "none";
   }
 }
 
@@ -204,3 +203,58 @@ document.addEventListener('DOMContentLoaded', function() {
 window.logout = logout;
 window.requireLogin = requireLogin;
 window.checkLoginStatus = checkLoginStatus;
+
+// 알림 메시지 표시 (메인 페이지와 동일)
+function showNotification(message, type = 'info') {
+  const existingNotification = document.querySelector('.notification');
+  if (existingNotification) {
+    existingNotification.remove();
+  }
+  
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.textContent = message;
+  
+  Object.assign(notification.style, {
+    position: 'fixed',
+    top: '100px',
+    right: '20px',
+    padding: '1rem 1.5rem',
+    borderRadius: '0.75rem',
+    color: 'white',
+    fontWeight: '600',
+    fontSize: '0.9rem',
+    zIndex: '1000',
+    opacity: '0',
+    transform: 'translateX(100%)',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)'
+  });
+  
+  if (type === 'success') {
+    notification.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+  } else if (type === 'error') {
+    notification.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+  } else {
+    notification.style.background = 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)';
+  }
+  
+  document.body.appendChild(notification);
+  
+  requestAnimationFrame(() => {
+    notification.style.opacity = '1';
+    notification.style.transform = 'translateX(0)';
+  });
+  
+  setTimeout(() => {
+    notification.style.opacity = '0';
+    notification.style.transform = 'translateX(100%)';
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 300);
+  }, 3000);
+}
+
+window.showNotification = showNotification;
