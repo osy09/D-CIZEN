@@ -9,43 +9,39 @@
 
 </head>
 <body>
-  <!-- 헤더 -->
+  <!-- 상단 로고와 네비게이션 메뉴 -->
   <header>
     <div class="container">
-    <div class="logo">
-      <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- 방패 모양: 책임감과 보호 의미 -->
-        <path d="M19 3 L33 8 V18 C33 27 19 35 19 35 C19 35 5 27 5 18 V8 Z" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
-        <!-- 사람 머리: 시민을 상징 -->
-        <circle cx="19" cy="14" r="3" fill="#fff"/>
-        <!-- 사람 몸통 -->
-        <rect x="16" y="17" width="6" height="7" rx="3" fill="#fff"/>
-        <!-- 네트워크 연결: 디지털 세상 상징 -->
-        <circle cx="11" cy="23" r="2" fill="#60a5fa"/>
-        <circle cx="27" cy="23" r="2" fill="#60a5fa"/>
-        <line x1="14" y1="23" x2="24" y2="23" stroke="#60a5fa" stroke-width="1.5"/>
-      </svg>
-      <!-- 로고 이름: D-CiZen (Digital Citizen의 의미) -->
-      <a class="form-bu" href="https://dcizen.dgsw.site">D-CiZen</a>
-    </div>
+      <a href="index.html" class="logo">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 3 L33 8 V18 C33 27 19 35 19 35 C19 35 5 27 5 18 V8 Z" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
+          <circle cx="19" cy="14" r="3" fill="#fff"/>
+          <rect x="16" y="17" width="6" height="7" rx="3" fill="#fff"/>
+          <circle cx="11" cy="23" r="2" fill="#60a5fa"/>
+          <circle cx="27" cy="23" r="2" fill="#60a5fa"/>
+          <line x1="14" y1="23" x2="24" y2="23" stroke="#60a5fa" stroke-width="1.5"/>
+        </svg>
+        D-CiZen
+      </a>
       <nav>
-        <a href="learn.html">학습</a>
-        <a href="form.html">테스트</a>
-        <a href="#community-section">커뮤니티</a>
+        <a href="learn.html" class="active">학습</a>
+        <a href="form.html">진단</a>
+        <a href="index.html#community-section">커뮤니티</a>
         <a href="help.html">도움말</a>
       </nav>
       <button class="login-btn">로그인</button>
     </div>
   </header>
 
-  <!-- 배너 -->
-<div class="hero">
+  <main>
+    <!-- 배너 -->
+    <div class="hero">
   <div class="hero-text">
     <h1>스마트한 디지털 시민이 되세요</h1>
     <p>온라인에서 배우고, 성찰하고, 책임감 있게 행동하세요</p>
     <div class="buttons">
       <button onclick="window.location.href='learn.html'">학습 시작하기</button>
-      <button onclick="window.location.href='form.html'">테스트 하기</button>
+      <button onclick="window.location.href='form.html'">진단 하기</button>
       <button onclick="window.location.href='#community-section'">내 이야기 공유하기</button>
     </div>
   </div>
@@ -212,15 +208,15 @@
     </div>
   </div>
 </section>
+  </main>
 
 <!-- Footer -->
 <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-content">
-      <!-- Footer 로고 및 소개 -->
+  <div class="container">
+    <div class="footer-simple">
       <div class="footer-brand">
-        <div class="footer-logo">
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <a href="index.html" class="footer-logo">
+          <svg width="28" height="28" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 3 L33 8 V18 C33 27 19 35 19 35 C19 35 5 27 5 18 V8 Z" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
             <circle cx="19" cy="14" r="3" fill="#fff"/>
             <rect x="16" y="17" width="6" height="7" rx="3" fill="#fff"/>
@@ -228,70 +224,15 @@
             <circle cx="27" cy="23" r="2" fill="#60a5fa"/>
             <line x1="14" y1="23" x2="24" y2="23" stroke="#60a5fa" stroke-width="1.5"/>
           </svg>
-          <span class="footer-logo-text">D-CiZen</span>
-        </div>
-        <p class="footer-description">스마트한 디지털 시민이 되어 안전하고 책임감 있는 온라인 세상을 만들어가세요.</p>
-      </div>
-
-      <!-- Footer 링크들 -->
-      <div class="footer-links">
-        <div class="footer-column">
-          <h4>학습</h4>
-          <ul>
-            <li><a href="learn.html?level=child">어린이 교육</a></li>
-            <li><a href="learn.html?level=teen">청소년 교육</a></li>
-            <li><a href="learn.html?level=adult">성인 교육</a></li>
-            <li><a href="learn.html">교육 자료</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-column">
-          <h4>커뮤니티</h4>
-          <ul>
-            <li><a href="#community-section">사례 공유</a></li>
-            <li><a href="#community-section">토론 게시판</a></li>
-            <li><a href="#community-section">전문가 칼럼</a></li>
-            <li><a href="#community-section">Q&A</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-column">
-          <h4>도움말</h4>
-          <ul>
-            <li><a href="help.html#report">신고하기</a></li>
-            <li><a href="help.html#contact">상담 받기</a></li>
-            <li><a href="help.html#faq">자주 묻는 질문</a></li>
-            <li><a href="help.html">이용 가이드</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-column">
-          <h4>회사 정보</h4>
-          <ul>
-            <li><a href="#hero">소개</a></li>
-            <li><a href="#help">개인정보처리방침</a></li>
-            <li><a href="#help">이용약관</a></li>
-            <li><a href="help.html#contact">문의하기</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer 하단 -->
-    <div class="footer-bottom">
-      <div class="footer-bottom-content">
+          D-CiZen
+        </a>
         <p>&copy; 2025 D-CiZen. 모든 권리 보유.</p>
-        <div class="footer-social">
-          <a href="#" class="social-link">
-            <span>📧</span>
-          </a>
-          <a href="#" class="social-link">
-            <span>📱</span>
-          </a>
-          <a href="#" class="social-link">
-            <span>🌐</span>
-          </a>
-        </div>
+      </div>
+      <div class="footer-nav">
+        <a href="index.html">홈</a>
+        <a href="learn.html">학습</a>
+        <a href="form.html">진단</a>
+        <a href="help.html">도움말</a>
       </div>
     </div>
   </div>

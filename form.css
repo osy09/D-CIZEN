@@ -85,19 +85,6 @@ body {
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
 }
-
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
-
-.mb-sm { margin-bottom: var(--spacing-sm); }
-.mb-md { margin-bottom: var(--spacing-md); }
-.mb-lg { margin-bottom: var(--spacing-lg); }
-.mb-xl { margin-bottom: var(--spacing-xl); }
-
-.mt-sm { margin-top: var(--spacing-sm); }
-.mt-md { margin-top: var(--spacing-md); }
-.mt-lg { margin-top: var(--spacing-lg); }
 .mt-xl { margin-top: var(--spacing-xl); }
 
 .p-sm { padding: var(--spacing-sm); }
@@ -774,7 +761,64 @@ main {
   justify-content: center;
 }
 
-/* 반응형 디자인 */
+/* Footer 스타일 */
+.footer {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: white;
+  padding: 2rem 0 1rem;
+  margin-top: 4rem;
+}
+
+.footer-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.footer-logo:hover {
+  color: #60a5fa;
+}
+
+.footer-brand p {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-nav a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #60a5fa;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0 var(--spacing-md);
@@ -867,6 +911,16 @@ main {
   
   .result-content {
     padding: var(--spacing-md);
+  }
+  
+  .footer-simple {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-nav {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
