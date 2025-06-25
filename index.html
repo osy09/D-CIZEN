@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>스마트한 디지털 시민</title>
   <link rel="stylesheet" href="index.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet">
 
 </head>
 <body>
@@ -33,7 +34,7 @@
         <a href="#">커뮤니티</a>
         <a href="#">도움말</a>
       </nav>
-      <button class="login-btn">로그인</button>
+      <button class="btn-base bg-gradient-primary shadow-primary hover-lift transition-base login-btn">로그인</button>
     </div>
   </header>
 
@@ -43,9 +44,11 @@
     <h1>스마트한 디지털 시민이 되세요</h1>
     <p>온라인에서 배우고, 성찰하고, 책임감 있게 행동하세요</p>
     <div class="buttons">
-      <button>학습 시작하기</button>
-      <button><a class="form-bu" href="form.html">테스트 하기</a></button>
-      <button>내 이야기 공유하기</button>
+      <button class="btn-base bg-gradient-primary shadow-primary hover-lift transition-base text-white">학습 시작하기</button>
+      <button class="btn-base bg-gradient-secondary shadow-md hover-lift transition-base">
+        <a class="form-bu" href="form.html" style="color: inherit; text-decoration: none;">테스트 하기</a>
+      </button>
+      <button class="btn-base bg-gradient-success shadow-success hover-lift transition-base text-white">내 이야기 공유하기</button>
     </div>
   </div>
 </div>
@@ -152,7 +155,155 @@
     <button class="discussion-btn">토론 참여하기</button>
   </div>
 </section>
+<section id="help" class="help-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>신고 &amp; 도움말 센터</h2>
+      <p>디지털 세상의 어려움을 함께 해결하고 필요한 도움을 제공해드립니다.</p>
+    </div>
+
+    <div class="card-grid">
+      <!-- Report Tool -->
+      <div class="cardg report-card">
+        <div class="icon-container red">
+          <span>⚠️</span>
+        </div>
+        <h3>문제 신고하기</h3>
+        <p>익명 신고 도구를 통해 사이버 괴롭힘, 부적절한 콘텐츠, 우려되는 온라인 행동을 안전하게 신고하세요.</p>
+        <div class="button-container">
+          <button class="btn btn-report">
+            <span class="btn-icon">🛡️</span>
+            신고하기
+          </button>
+        </div>
+      </div>
+
+      <!-- Help Center -->
+      <div class="cardg help-card">
+        <div class="icon-container green">
+          <span>🤝</span>
+        </div>
+        <h3>도움받기</h3>
+        <p>디지털 시민의식 관련 어려움이 있다면 전문 상담팀과 실시간 채팅으로 상담받으세요.</p>
+        <div class="button-container">
+          <button class="btn btn-help">
+            <span class="btn-icon">💬</span>
+            채팅 상담 시작하기
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partner Resources -->
+    <div class="partners-card">
+      <h4>Our Support Partners</h4>
+      <div class="partners">
+        <div class="partner">
+          <span class="icon blue">🔒</span>
+          <span>National Cybersecurity Alliance</span>
+        </div>
+        <div class="partner">
+          <span class="icon purple">�</span>
+          <span>Family Online Safety Institute</span>
+        </div>
+        <div class="partner">
+          <span class="icon yellow">🌱</span>
+          <span>Digital Wellness Institute</span>
+        </div>
+        <div class="partner">
+          <span class="icon green">📚</span>
+          <span>Common Sense Education</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <!-- Footer 로고 및 소개 -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 3 L33 8 V18 C33 27 19 35 19 35 C19 35 5 27 5 18 V8 Z" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>
+            <circle cx="19" cy="14" r="3" fill="#fff"/>
+            <rect x="16" y="17" width="6" height="7" rx="3" fill="#fff"/>
+            <circle cx="11" cy="23" r="2" fill="#60a5fa"/>
+            <circle cx="27" cy="23" r="2" fill="#60a5fa"/>
+            <line x1="14" y1="23" x2="24" y2="23" stroke="#60a5fa" stroke-width="1.5"/>
+          </svg>
+          <span class="footer-logo-text">D-CiZen</span>
+        </div>
+        <p class="footer-description">스마트한 디지털 시민이 되어 안전하고 책임감 있는 온라인 세상을 만들어가세요.</p>
+      </div>
+
+      <!-- Footer 링크들 -->
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>학습</h4>
+          <ul>
+            <li><a href="#">어린이 교육</a></li>
+            <li><a href="#">청소년 교육</a></li>
+            <li><a href="#">성인 교육</a></li>
+            <li><a href="#">교육 자료</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>커뮤니티</h4>
+          <ul>
+            <li><a href="#">사례 공유</a></li>
+            <li><a href="#">토론 게시판</a></li>
+            <li><a href="#">전문가 칼럼</a></li>
+            <li><a href="#">Q&A</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>도움말</h4>
+          <ul>
+            <li><a href="#">신고하기</a></li>
+            <li><a href="#">상담 받기</a></li>
+            <li><a href="#">자주 묻는 질문</a></li>
+            <li><a href="#">이용 가이드</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>회사 정보</h4>
+          <ul>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">개인정보처리방침</a></li>
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">문의하기</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer 하단 -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <p>&copy; 2025 D-CiZen. 모든 권리 보유.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link">
+            <span>📧</span>
+          </a>
+          <a href="#" class="social-link">
+            <span>📱</span>
+          </a>
+          <a href="#" class="social-link">
+            <span>🌐</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
+
 <script src="index.js"></script>
 </html>
