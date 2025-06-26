@@ -136,6 +136,9 @@ const lineElements = document.querySelectorAll('.line');
 
 // 초기화
 document.addEventListener('DOMContentLoaded', function() {
+  // 로그인 상태 확인 및 버튼 업데이트
+  updateLoginButton();
+  
   // 로그인 상태 확인 및 네비게이션 업데이트
   updateNavigation();
   
@@ -148,6 +151,69 @@ document.addEventListener('DOMContentLoaded', function() {
   // 페이지 애니메이션
   animatePageEntry();
 });
+
+// 로그인 상태에 따라 버튼 업데이트
+function updateLoginButton() {
+  const loginBtn = document.querySelector('.login-btn');
+  const isLoggedIn = checkLoginStatus();
+  
+  if (loginBtn) {
+    if (isLoggedIn) {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      loginBtn.textContent = user.name || '테스트사용자';
+      loginBtn.disabled = false;
+      loginBtn.style.opacity = '1';
+      loginBtn.style.cursor = 'pointer';
+      loginBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+      loginBtn.style.boxShadow = '0 4px 15px rgba(239, 68, 68, 0.3)';
+      
+      // 로그아웃 이벤트 추가
+      loginBtn.onclick = function() {
+        if (confirm('로그아웃 하시겠습니까?')) {
+          logout();
+        }
+      };
+      
+      // 호버 효과
+      loginBtn.addEventListener('mouseenter', function() {
+        this.style.background = 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)';
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 8px 25px rgba(239, 68, 68, 0.4)';
+      });
+      
+      loginBtn.addEventListener('mouseleave', function() {
+        this.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 15px rgba(239, 68, 68, 0.3)';
+      });
+    } else {
+      loginBtn.textContent = '로그인';
+      loginBtn.disabled = false;
+      loginBtn.style.opacity = '1';
+      loginBtn.style.cursor = 'pointer';
+      loginBtn.style.background = 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)';
+      loginBtn.style.boxShadow = '0 4px 15px rgba(37, 99, 235, 0.3)';
+      
+      // 로그인 페이지로 이동
+      loginBtn.onclick = function() {
+        window.location.href = 'login.html';
+      };
+      
+      // 호버 효과
+      loginBtn.addEventListener('mouseenter', function() {
+        this.style.background = 'linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%)';
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 8px 25px rgba(37, 99, 235, 0.4)';
+      });
+      
+      loginBtn.addEventListener('mouseleave', function() {
+        this.style.background = 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)';
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 15px rgba(37, 99, 235, 0.3)';
+      });
+    }
+  }
+}
 
 // 로그인 상태 확인 및 네비게이션 업데이트
 function updateNavigation() {
@@ -165,7 +231,7 @@ function updateNavigation() {
   }
 }
 
-// 로그인 상태 확인 (메인 페이지와 동일한 로직)
+// 로그인 상태 확인
 function checkLoginStatus() {
   const isLogin = localStorage.getItem('isLogin');
   const loginTime = localStorage.getItem('loginTime');
@@ -187,16 +253,17 @@ function checkLoginStatus() {
 
 // 로그아웃 함수
 function logout() {
-  if (confirm('로그아웃 하시겠습니까?')) {
-    localStorage.removeItem('isLogin');
-    localStorage.removeItem('user');
-    localStorage.removeItem('loginTime');
-    
-    showNotification('로그아웃되었습니다.', 'success');
-    setTimeout(() => {
-      window.location.href = 'main.html';
-    }, 1000);
-  }
+  localStorage.removeItem('isLogin');
+  localStorage.removeItem('user');
+  localStorage.removeItem('loginTime');
+  
+  // 성공 메시지 표시
+  showNotification('로그아웃되었습니다.', 'success');
+  
+  // 페이지 새로고침으로 버튼 상태 업데이트
+  setTimeout(() => {
+    location.reload();
+  }, 1000);
 }
 
 // 설문 초기화
@@ -580,3 +647,7 @@ document.addEventListener('keydown', function(e) {
 
 // 전역 함수로 내보내기 (HTML에서 호출)
 window.restartQuiz = restartQuiz;
+window.logout = logout;
+window.checkLoginStatus = checkLoginStatus;
+window.showNotification = showNotification;
+window.updateLoginButton = updateLoginButton;

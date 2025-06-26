@@ -8,6 +8,9 @@ const contactForm = document.getElementById('contactForm');
 
 // 초기화
 document.addEventListener('DOMContentLoaded', function() {
+  // 로그인 상태 확인 및 버튼 업데이트
+  updateLoginButton();
+  
   // 로그인 상태 확인 및 네비게이션 업데이트
   updateNavigation();
   
@@ -69,7 +72,7 @@ function logout() {
     
     showNotification('로그아웃되었습니다.', 'success');
     setTimeout(() => {
-      window.location.href = 'main.html';
+      location.reload();
     }, 1000);
   }
 }
@@ -440,3 +443,70 @@ qnaForm.addEventListener('submit', function(e) {
 // 페이지 로드 시 QNA 목록 및 버튼 상태 갱신
 loadQna();
 updateAuthButtons();
+
+// 로그인 상태에 따라 버튼 업데이트
+function updateLoginButton() {
+  const loginBtn = document.querySelector('.login-btn');
+  const isLoggedIn = checkLoginStatus();
+  
+  if (loginBtn) {
+    if (isLoggedIn) {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      loginBtn.textContent = user.name || '테스트사용자';
+      loginBtn.disabled = false;
+      loginBtn.style.opacity = '1';
+      loginBtn.style.cursor = 'pointer';
+      loginBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+      loginBtn.style.boxShadow = '0 4px 15px rgba(239, 68, 68, 0.3)';
+      
+      // 로그아웃 이벤트 추가
+      loginBtn.onclick = function() {
+        logout();
+      };
+      
+      // 호버 효과
+      loginBtn.addEventListener('mouseenter', function() {
+        this.style.background = 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)';
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 8px 25px rgba(239, 68, 68, 0.4)';
+      });
+      
+      loginBtn.addEventListener('mouseleave', function() {
+        this.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 15px rgba(239, 68, 68, 0.3)';
+      });
+    } else {
+      loginBtn.textContent = '로그인';
+      loginBtn.disabled = false;
+      loginBtn.style.opacity = '1';
+      loginBtn.style.cursor = 'pointer';
+      loginBtn.style.background = 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)';
+      loginBtn.style.boxShadow = '0 4px 15px rgba(37, 99, 235, 0.3)';
+      
+      // 로그인 페이지로 이동
+      loginBtn.onclick = function() {
+        window.location.href = 'login.html';
+      };
+      
+      // 호버 효과
+      loginBtn.addEventListener('mouseenter', function() {
+        this.style.background = 'linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%)';
+        this.style.transform = 'translateY(-2px)';
+        this.style.boxShadow = '0 8px 25px rgba(37, 99, 235, 0.4)';
+      });
+      
+      loginBtn.addEventListener('mouseleave', function() {
+        this.style.background = 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)';
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 15px rgba(37, 99, 235, 0.3)';
+      });
+    }
+  }
+}
+
+// 전역 함수로 내보내기
+window.logout = logout;
+window.checkLoginStatus = checkLoginStatus;
+window.showNotification = showNotification;
+window.updateLoginButton = updateLoginButton;
