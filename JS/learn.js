@@ -3,9 +3,9 @@
 // 전역 상태
 let currentLevel = 'child';
 let progressData = {
-  child: { completed: 3, total: 8 },
-  teen: { completed: 5, total: 10 },
-  adult: { completed: 2, total: 6 }
+  child: { completed: 2, total: 3 },
+  teen: { completed: 1, total: 3 },
+  adult: { completed: 0, total: 3 }
 };
 
 // DOM 요소들
@@ -155,11 +155,21 @@ function logout() {
 
 // 레벨 탭 기능 초기화
 function initializeLevelTabs() {
-  if (!levelTabs) return;
+  // DOM 요소 다시 확인
+  levelTabs = document.querySelectorAll('.level-tab');
+  levelContents = document.querySelectorAll('.level-content');
   
-  levelTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-      const level = this.getAttribute('data-level');
+  if (!levelTabs || levelTabs.length === 0) {
+    console.error('레벨 탭을 찾을 수 없습니다.');
+    return;
+  }
+  
+  levelTabs.forEach((tab, index) => {
+    const level = tab.getAttribute('data-level');
+    
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      
       if (level && level !== currentLevel) {
         switchLevel(level);
       }
@@ -183,7 +193,8 @@ function switchLevel(level) {
   // 탭 활성화 상태 업데이트
   levelTabs.forEach(tab => {
     tab.classList.remove('active');
-    if (tab.getAttribute('data-level') === level) {
+    const tabLevel = tab.getAttribute('data-level');
+    if (tabLevel === level) {
       tab.classList.add('active');
     }
   });
@@ -191,7 +202,8 @@ function switchLevel(level) {
   // 콘텐츠 표시/숨김
   levelContents.forEach(content => {
     content.classList.remove('active');
-    if (content.id === `content-${level}`) {
+    const contentId = `content-${level}`;
+    if (content.id === contentId) {
       content.classList.add('active');
       
       // 콘텐츠 나타나는 애니메이션
@@ -221,34 +233,36 @@ function switchLevel(level) {
 
 // 진행 현황 업데이트
 function updateProgressDisplay() {
-  const progressContainer = document.querySelector('.progress-overview');
-  if (!progressContainer || !progressData[currentLevel]) return;
+  if (!progressData[currentLevel]) return;
   
   const data = progressData[currentLevel];
   const percentage = Math.round((data.completed / data.total) * 100);
   
+  // 완료한 강의 수 업데이트
+  const completedNumberEl = document.querySelector('.progress-card:first-child .progress-number');
+  if (completedNumberEl) {
+    completedNumberEl.innerHTML = `${data.completed}<span>/${data.total}</span>`;
+  }
+  
   // 진행률 바 업데이트
-  const progressBar = progressContainer.querySelector('.progress-fill');
+  const progressBar = document.querySelector('.progress-fill');
   if (progressBar) {
     progressBar.style.width = `${percentage}%`;
     progressBar.style.transition = 'width 0.8s ease';
   }
   
-  // 텍스트 업데이트
-  const progressText = progressContainer.querySelector('.progress-text');
-  if (progressText) {
-    progressText.textContent = `${data.completed}/${data.total} 완료 (${percentage}%)`;
+  // 학습 시간 업데이트 (예시 데이터)
+  const studyTimeEl = document.querySelector('.progress-card:nth-child(2) .progress-number');
+  if (studyTimeEl) {
+    const studyTime = data.completed * 15; // 각 강의당 15분 가정
+    studyTimeEl.innerHTML = `${studyTime}<span>분</span>`;
   }
   
-  // 레벨별 제목 업데이트
-  const levelTitle = progressContainer.querySelector('h3');
-  if (levelTitle) {
-    const levelNames = {
-      child: '아동 (7-12세)',
-      teen: '청소년 (13-18세)',
-      adult: '성인 (19세 이상)'
-    };
-    levelTitle.textContent = `${levelNames[currentLevel]} 학습 진행률`;
+  // 획득한 배지 수 업데이트
+  const badgeCountEl = document.querySelector('.progress-card:nth-child(3) .progress-number');
+  if (badgeCountEl) {
+    const badges = Math.floor(data.completed / 3); // 3개 강의마다 배지 1개
+    badgeCountEl.innerHTML = `${badges}<span>개</span>`;
   }
 }
 
@@ -349,6 +363,21 @@ function setupLearningCards() {
       this.style.transform = 'translateY(0)';
       this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.08)';
     });
+  });
+}
+
+// 네비게이션 업데이트
+function updateNavigation() {
+  const navLinks = document.querySelectorAll('nav a');
+  const currentPage = window.location.pathname.split('/').pop();
+  
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.includes(currentPage)) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
   });
 }
 
