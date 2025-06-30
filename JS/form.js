@@ -1,11 +1,28 @@
-// 디지털 시민 자가진단 설문조사 스크립트
+/**
+ * ========================================
+ * D-CiZen 디지털 시민의식 자가진단 시스템
+ * ========================================
+ * 
+ * 이 파일은 사용자의 디지털 시민의식 수준을 측정하는 설문조사 시스템입니다.
+ * 주요 기능:
+ * - 5개 문항의 디지털 시민의식 평가 설문
+ * - 응답에 따른 자동 점수 계산
+ * - 점수별 맞춤 결과 및 개선 방안 제시
+ * - 인터랙티브한 설문 진행 인터페이스
+ * - 결과 분석 및 추천사항 제공
+ * 
+ * 작성자: 대구소프트웨어마이스터고등학교 1학년 1반 오승윤, 조원진
+ * 수행평가용 웹사이트
+ */
 
-// 설문 데이터
+// ============= 설문 문항 데이터 =============
+// 디지털 시민의식을 평가하기 위한 5개 핵심 문항
+// 각 문항은 5점 척도로 평가됩니다 (1점: 매우 부족 ~ 5점: 매우 우수)
 const questions = [
   {
-    id: 1,
-    text: "소셜 미디어에 게시물을 올리기 전에 사실 확인을 얼마나 자주 하시나요?",
-    options: [
+    id: 1, // 문항 고유 번호
+    text: "소셜 미디어에 게시물을 올리기 전에 사실 확인을 얼마나 자주 하시나요?", // 질문 내용
+    options: [ // 선택 옵션들 (점수가 높을수록 좋은 답변)
       { value: 5, text: "항상 사실 확인을 한다" },
       { value: 4, text: "대부분 사실 확인을 한다" },
       { value: 3, text: "가끔 사실 확인을 한다" },
@@ -59,8 +76,10 @@ const questions = [
   }
 ];
 
-// 점수별 결과 데이터
+// ============= 점수별 결과 분석 데이터 =============
+// 총점(5~25점)에 따라 4단계로 결과를 분류하고 맞춤 피드백을 제공합니다
 const results = {
+  // 우수 등급 (21~25점): 매우 높은 디지털 시민의식
   excellent: {
     grade: "우수",
     minScore: 21,
@@ -73,6 +92,7 @@ const results = {
       "온라인 커뮤니티에서 긍정적인 영향력을 발휘하세요"
     ]
   },
+  // 양호 등급 (16~20점): 좋은 수준이지만 일부 개선 필요
   good: {
     grade: "양호",
     minScore: 16,
@@ -85,6 +105,7 @@ const results = {
       "온라인 토론에서 더욱 존중하는 태도를 연습하세요"
     ]
   },
+  // 보통 등급 (11~15점): 기본적인 수준이지만 많은 개선 필요
   average: {
     grade: "보통",
     minScore: 11,
@@ -98,6 +119,7 @@ const results = {
       "디지털 기기 사용 시간을 관리하는 방법을 찾아보세요"
     ]
   },
+  // 개선 필요 등급 (5~10점): 상당한 개선이 필요한 수준
   needsImprovement: {
     grade: "개선 필요",
     minScore: 5,
@@ -114,41 +136,47 @@ const results = {
   }
 };
 
-// 전역 변수
-let currentQuestionIndex = 0;
-let userAnswers = [];
-let isTransitioning = false;
+// ============= 전역 변수들 =============
+let currentQuestionIndex = 0; // 현재 표시 중인 문항 번호 (0부터 시작)
+let userAnswers = [];         // 사용자의 답변들을 저장하는 배열
+let isTransitioning = false;  // 화면 전환 중인지 확인하는 플래그 (중복 클릭 방지)
 
-// DOM 요소
-const questionForm = document.getElementById('questionForm');
-const questionNumber = document.getElementById('questionNumber');
-const questionText = document.getElementById('questionText');
-const progressBar = document.getElementById('progressBar');
-const progressText = document.getElementById('progressText');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const resultSection = document.getElementById('resultSection');
-const questionnaire = document.querySelector('.questionnaire');
+// ============= DOM 요소들 =============
+// HTML에서 설문 관련 요소들을 찾아서 변수에 저장
+const questionForm = document.getElementById('questionForm');     // 설문 폼
+const questionNumber = document.getElementById('questionNumber'); // 문항 번호 표시
+const questionText = document.getElementById('questionText');     // 질문 내용 표시
+const progressBar = document.getElementById('progressBar');       // 진행률 바
+const progressText = document.getElementById('progressText');     // 진행률 텍스트
+const prevBtn = document.getElementById('prevBtn');               // 이전 버튼
+const nextBtn = document.getElementById('nextBtn');               // 다음 버튼
+const resultSection = document.getElementById('resultSection');   // 결과 표시 섹션
+const questionnaire = document.querySelector('.questionnaire');   // 설문지 전체 영역
 
-// 스테퍼 요소들
-const stepElements = document.querySelectorAll('.step');
-const lineElements = document.querySelectorAll('.line');
+// ============= 스테퍼(진행 단계 표시) 요소들 =============
+const stepElements = document.querySelectorAll('.step');  // 단계 표시 원들
+const lineElements = document.querySelectorAll('.line');  // 단계 연결 선들
 
-// 초기화
+/**
+ * ========================================
+ * 메인 초기화 함수
+ * ========================================
+ * DOM이 로드되면 실행되는 메인 함수
+ */
 document.addEventListener('DOMContentLoaded', function() {
-  // 로그인 상태 확인 및 버튼 업데이트
+  // 1. 로그인 상태를 확인하고 헤더의 로그인 버튼 업데이트
   updateLoginButton();
   
-  // 로그인 상태 확인 및 네비게이션 업데이트
+  // 2. 네비게이션 메뉴에서 현재 페이지 표시 업데이트
   updateNavigation();
   
-  // 설문 시작
+  // 3. 설문조사 시스템 초기화 (첫 번째 문항 표시)
   initializeQuiz();
   
-  // 이벤트 리스너 등록
+  // 4. 버튼 클릭 등 이벤트 리스너들 등록
   setupEventListeners();
   
-  // 페이지 애니메이션
+  // 5. 페이지 진입 시 애니메이션 효과
   animatePageEntry();
 });
 
