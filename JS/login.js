@@ -1,40 +1,85 @@
-// D-CiZen 로그인 시스템 (개선된 버전)
+/**
+ * ========================================
+ * D-CiZen 로그인 시스템 (개선된 버전)
+ * ========================================
+ * 
+ * 이 파일은 D-CiZen 로그인 페이지의 모든 기능을 관리합니다.
+ * 주요 기능:
+ * - 사용자 로그인 처리
+ * - 입력값 검증
+ * - 로딩 상태 관리
+ * - 로그인 상태 저장 및 확인
+ * - 자동 로그아웃 기능
+ * 
+ * 작성자: 대구소프트웨어마이스터고등학교 1학년 1반 오승윤, 조원진
+ * 수행평가용 웹사이트 - 실제 서버 없이 클라이언트에서만 동작
+ */
 
-// DOM 요소
-const loginForm = document.getElementById('loginForm');
-const loginError = document.getElementById('loginError');
-const loginSuccess = document.getElementById('loginSuccess');
-const submitButton = loginForm?.querySelector('button[type="submit"]');
+// ============= DOM 요소 선택 =============
+// HTML에서 로그인 관련 요소들을 찾아서 변수에 저장합니다
+const loginForm = document.getElementById('loginForm');     // 로그인 폼
+const loginError = document.getElementById('loginError');   // 에러 메시지 표시 영역
+const loginSuccess = document.getElementById('loginSuccess'); // 성공 메시지 표시 영역
+const submitButton = loginForm?.querySelector('button[type="submit"]'); // 로그인 버튼
 
-// 데모 계정
-const DEMO_USER = { username: "testuser", password: "1234" };
+// ============= 데모 계정 정보 =============
+// 실제 서비스에서는 서버에서 관리하지만, 여기서는 데모용으로 하드코딩
+const DEMO_USER = { 
+  username: "testuser",    // 데모 아이디
+  password: "1234"         // 데모 비밀번호
+};
 
-// 유틸리티 함수
+/**
+ * ========================================
+ * 유틸리티 함수들 (도구 함수들)
+ * ========================================
+ */
+
+/**
+ * 메시지를 사용자에게 표시하는 함수
+ * 기존의 alert 대신 예쁜 알림을 사용합니다
+ * 
+ * @param {HTMLElement} element - 메시지를 표시할 HTML 요소 (현재는 사용하지 않음)
+ * @param {string} message - 표시할 메시지 내용
+ * @param {boolean} isError - true면 에러 메시지, false면 성공 메시지
+ */
 function showMessage(element, message, isError = false) {
-  // 새로운 알림 시스템 사용
+  // 새로운 알림 시스템을 사용합니다 (메인 페이지와 동일)
   const type = isError ? 'error' : 'success';
   showNotification(message, type);
   
-  // 기존 메시지 요소는 숨김
+  // 기존 메시지 요소는 숨깁니다 (새 알림 시스템을 사용하므로)
   if (element) {
     element.style.display = "none";
   }
 }
 
+/**
+ * 기존 에러/성공 메시지를 숨기는 함수
+ */
 function hideMessages() {
   loginError.style.display = "none";
   loginSuccess.style.display = "none";
 }
 
+/**
+ * 로그인 버튼의 로딩 상태를 설정하는 함수
+ * 로그인 처리 중일 때 버튼을 비활성화하고 "로그인 중..." 표시
+ * 
+ * @param {boolean} isLoading - true면 로딩 상태, false면 일반 상태
+ */
 function setLoading(isLoading) {
   if (submitButton) {
-    submitButton.disabled = isLoading;
+    submitButton.disabled = isLoading; // 버튼 비활성화/활성화
+    
     if (isLoading) {
+      // 로딩 상태일 때
       submitButton.classList.add('loading');
-      submitButton.innerHTML = '<i class="ri-loader-2-line"></i> 로그인 중...';
+      submitButton.innerHTML = '<i class="ri-loader-2-line"></i> 로그인 중...'; // 로딩 아이콘과 텍스트
     } else {
+      // 일반 상태일 때
       submitButton.classList.remove('loading');
-      submitButton.innerHTML = '<i class="ri-login-circle-line"></i> 로그인';
+      submitButton.innerHTML = '<i class="ri-login-circle-line"></i> 로그인'; // 원래 아이콘과 텍스트
     }
   }
 }

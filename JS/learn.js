@@ -1,57 +1,93 @@
-// D-CiZen 학습 페이지 JavaScript
+/**
+ * ========================================
+ * D-CiZen 학습 페이지 JavaScript
+ * ========================================
+ * 
+ * 이 파일은 D-CiZen 학습 페이지의 모든 기능을 관리합니다.
+ * 주요 기능:
+ * - 연령대별 학습 콘텐츠 탭 전환 (초등학생/중고등학생/성인)
+ * - 학습 진행 현황 표시
+ * - 로그인 상태 관리
+ * - 학습 카드 상호작용
+ * - 페이지 애니메이션 효과
+ * 
+ * 작성자: 대구소프트웨어마이스터고등학교 1학년 1반 오승윤, 조원진
+ * 수행평가용 웹사이트
+ */
 
-// 전역 상태
-let currentLevel = 'child';
+// ============= 전역 상태 변수들 =============
+let currentLevel = 'child'; // 현재 선택된 학습 레벨 ('child', 'teen', 'adult')
+
+// 각 연령대별 학습 진행 데이터 (실제로는 서버에서 가져올 데이터)
 let progressData = {
-  child: { completed: 2, total: 3 },
-  teen: { completed: 1, total: 3 },
-  adult: { completed: 0, total: 3 }
+  child: { completed: 2, total: 3 }, // 초등학생: 3개 중 2개 완료
+  teen: { completed: 1, total: 3 },  // 중고등학생: 3개 중 1개 완료
+  adult: { completed: 0, total: 3 }  // 성인: 3개 중 0개 완료
 };
 
-// DOM 요소들
-let levelTabs = null;
-let levelContents = null;
-let progressBars = null;
+// ============= DOM 요소들을 저장할 변수들 =============
+// 페이지 로드 후 HTML 요소들을 찾아서 저장할 예정
+let levelTabs = null;     // 레벨 선택 탭들 (초등학생, 중고등학생, 성인 버튼)
+let levelContents = null; // 레벨별 콘텐츠 영역들
+let progressBars = null;  // 진행률 표시 바들
 
-// DOM 로드 완료 후 실행
+/**
+ * ========================================
+ * 메인 초기화 함수
+ * ========================================
+ * DOM이 로드되면 실행되는 메인 함수
+ */
 document.addEventListener('DOMContentLoaded', function() {
-  initializeLearnPage();
+  initializeLearnPage(); // 학습 페이지 초기화 함수 호출
 });
 
-// 학습 페이지 초기화
+/**
+ * 학습 페이지의 모든 기능을 초기화하는 메인 함수
+ * 페이지가 로드될 때 필요한 모든 설정을 순서대로 실행합니다
+ */
 function initializeLearnPage() {
-  // DOM 요소 초기화
+  // 1. DOM 요소들을 찾아서 변수에 저장
   initializeDOMElements();
   
-  // 로그인 상태 확인 및 버튼 업데이트
+  // 2. 로그인 상태를 확인하고 헤더의 로그인 버튼 업데이트
   updateLoginButton();
   
-  // 로그인 상태 확인 및 네비게이션 업데이트
+  // 3. 네비게이션 메뉴에서 현재 페이지 표시 업데이트
   updateNavigation();
   
-  // 레벨 탭 기능 초기화
+  // 4. 레벨 탭 기능 초기화 (초등학생/중고등학생/성인 버튼)
   initializeLevelTabs();
   
-  // URL 파라미터 확인하여 특정 레벨로 이동
+  // 5. URL 파라미터 확인하여 특정 레벨로 이동 (예: ?level=teen)
   checkURLParameters();
   
-  // 진행 현황 업데이트
+  // 6. 학습 진행 현황 표시 업데이트
   updateProgressDisplay();
   
-  // 스크롤 헤더 효과
+  // 7. 스크롤에 따른 헤더 효과 설정
   setupScrollEffects();
   
-  // 페이지 애니메이션
+  // 8. 페이지 진입 시 애니메이션 효과
   animatePageEntry();
   
-  // 학습 카드 이벤트 설정
+  // 9. 학습 카드들의 클릭/호버 이벤트 설정
   setupLearningCards();
 }
 
-// DOM 요소 초기화
+/**
+ * ========================================
+ * DOM 요소 초기화 함수
+ * ========================================
+ * HTML에서 필요한 요소들을 찾아서 전역 변수에 저장합니다
+ */
 function initializeDOMElements() {
+  // 레벨 선택 탭들을 모두 찾아서 저장 (.level-tab 클래스를 가진 모든 요소)
   levelTabs = document.querySelectorAll('.level-tab');
+  
+  // 레벨별 콘텐츠 영역들을 모두 찾아서 저장 (.level-content 클래스를 가진 모든 요소)
   levelContents = document.querySelectorAll('.level-content');
+  
+  // 진행률 표시 바들을 모두 찾아서 저장 (.progress-fill 클래스를 가진 모든 요소)
   progressBars = document.querySelectorAll('.progress-fill');
 }
 
@@ -153,81 +189,108 @@ function logout() {
   }, 1000);
 }
 
-// 레벨 탭 기능 초기화
+/**
+ * ========================================
+ * 레벨 탭 기능 초기화 함수
+ * ========================================
+ * 초등학생, 중고등학생, 성인 버튼들에 클릭 이벤트를 추가합니다
+ */
 function initializeLevelTabs() {
-  // DOM 요소 다시 확인
+  // DOM 요소들을 다시 확인 (페이지 로드 후 확실히 존재하는지 재확인)
   levelTabs = document.querySelectorAll('.level-tab');
   levelContents = document.querySelectorAll('.level-content');
   
+  // 레벨 탭이 존재하지 않으면 에러를 출력하고 함수 종료
   if (!levelTabs || levelTabs.length === 0) {
     console.error('레벨 탭을 찾을 수 없습니다.');
     return;
   }
   
+  // 각 레벨 탭에 클릭 이벤트 리스너를 추가합니다
   levelTabs.forEach((tab, index) => {
+    // 각 탭의 data-level 속성에서 레벨 정보를 가져옵니다
+    // 예: data-level="child", data-level="teen", data-level="adult"
     const level = tab.getAttribute('data-level');
     
+    // 탭 클릭 이벤트 추가
     tab.addEventListener('click', function(e) {
-      e.preventDefault();
+      e.preventDefault(); // 링크의 기본 동작 방지
       
+      // 클릭한 레벨이 현재 레벨과 다르면 레벨을 전환합니다
       if (level && level !== currentLevel) {
-        switchLevel(level);
+        switchLevel(level); // 레벨 전환 함수 호출
       }
     });
   });
   
-  // 첫 번째 탭 활성화
+  // 페이지 로드 시 첫 번째 탭을 기본으로 활성화
   if (levelTabs.length > 0) {
     const firstTab = levelTabs[0];
     const firstLevel = firstTab.getAttribute('data-level');
     if (firstLevel) {
-      switchLevel(firstLevel);
+      switchLevel(firstLevel); // 첫 번째 레벨로 전환
     }
   }
 }
 
-// 레벨 전환
+/**
+ * ========================================
+ * 레벨 전환 함수
+ * ========================================
+ * 사용자가 다른 연령대 탭을 클릭했을 때 해당 콘텐츠로 전환합니다
+ * 
+ * @param {string} level - 전환할 레벨 ('child', 'teen', 'adult')
+ */
 function switchLevel(level) {
-  currentLevel = level;
+  currentLevel = level; // 전역 변수 업데이트
   
-  // 탭 활성화 상태 업데이트
+  // ============= 탭 활성화 상태 업데이트 =============
   levelTabs.forEach(tab => {
+    // 모든 탭에서 active 클래스 제거
     tab.classList.remove('active');
+    
+    // 현재 선택된 레벨의 탭에만 active 클래스 추가
     const tabLevel = tab.getAttribute('data-level');
     if (tabLevel === level) {
       tab.classList.add('active');
     }
   });
   
-  // 콘텐츠 표시/숨김
+  // ============= 콘텐츠 표시/숨김 처리 =============
   levelContents.forEach(content => {
+    // 모든 콘텐츠에서 active 클래스 제거 (숨김)
     content.classList.remove('active');
-    const contentId = `content-${level}`;
+    
+    // 현재 선택된 레벨의 콘텐츠만 active 클래스 추가 (표시)
+    const contentId = `content-${level}`; // 예: "content-child"
     if (content.id === contentId) {
       content.classList.add('active');
       
-      // 콘텐츠 나타나는 애니메이션
+      // ============= 콘텐츠 나타나는 애니메이션 =============
+      // 처음에는 투명하고 아래로 20px 이동된 상태
       content.style.opacity = '0';
       content.style.transform = 'translateY(20px)';
       
+      // 다음 프레임에서 원래 위치로 부드럽게 이동
       requestAnimationFrame(() => {
-        content.style.transition = 'all 0.5s ease';
-        content.style.opacity = '1';
-        content.style.transform = 'translateY(0)';
+        content.style.transition = 'all 0.5s ease'; // 0.5초 동안 부드럽게
+        content.style.opacity = '1';                 // 완전 불투명
+        content.style.transform = 'translateY(0)';   // 원래 위치
       });
     }
   });
   
-  // 진행률 업데이트
+  // ============= 진행률 표시 업데이트 =============
   updateProgressDisplay();
   
-  // 탭 클릭 애니메이션
+  // ============= 탭 클릭 애니메이션 효과 =============
   const activeTab = document.querySelector(`[data-level="${level}"]`);
   if (activeTab) {
+    // 탭을 살짝 축소했다가 다시 원래 크기로 (클릭 피드백)
     activeTab.style.transform = 'scale(0.95)';
     setTimeout(() => {
       activeTab.style.transform = 'scale(1)';
-    }, 150);
+    }, 150); // 0.15초 후 원래 크기로
   }
 }
 
@@ -366,13 +429,24 @@ function setupLearningCards() {
   });
 }
 
-// 네비게이션 업데이트
+/**
+ * ========================================
+ * 네비게이션 업데이트 함수
+ * ========================================
+ * 현재 페이지에 해당하는 네비게이션 메뉴에 'active' 클래스를 추가합니다
+ */
 function updateNavigation() {
+  // 네비게이션의 모든 링크를 찾습니다
   const navLinks = document.querySelectorAll('nav a');
+  
+  // 현재 페이지의 파일명을 가져옵니다 (예: "learn.html")
   const currentPage = window.location.pathname.split('/').pop();
   
+  // 각 네비게이션 링크를 확인합니다
   navLinks.forEach(link => {
     const href = link.getAttribute('href');
+    
+    // 링크의 href가 현재 페이지와 일치하면 active 클래스 추가
     if (href && href.includes(currentPage)) {
       link.classList.add('active');
     } else {
